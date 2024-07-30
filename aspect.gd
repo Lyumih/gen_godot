@@ -1,8 +1,9 @@
 extends HBoxContainer
 @export var aspect: PackedScene
 
-var aspect_info_format = '{name}. 
-Ур. {level} ({level_chance}% шанс на прокачку после победы)
+var aspect_info_format = '{name} 
+Уровень: {level}
+Шанс прокачки: {chance}%({previous_chance}) после победы
 {description}'
 
 ## Нужно зачем-то проинстанцировать эту сцену.
@@ -19,7 +20,9 @@ func update_info():
 		$AspectInfo.text = aspect_info_format.format({
 			"name":_aspect.stats.aspect_name,
 			"level": _aspect.level.level,
-			"level_chance": _aspect.level.chance,
+			"chance": _aspect.level.chance,
+# TODO: разобраться, почему previous_chance не отрабатывает
+			"previous_chance": _aspect.level.logger.previous_chance,
 			"description": _aspect.stats.description
 			})
 	#else:
