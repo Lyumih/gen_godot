@@ -4,7 +4,7 @@ extends HBoxContainer
 var aspect_info_format = '{name} 
 Уровень: {level}
 Шанс прокачки: {chance}%({previous_chance}) после победы
-{description}'
+Описание: {description}'
 
 ## Нужно зачем-то проинстанцировать эту сцену.
 var _aspect
