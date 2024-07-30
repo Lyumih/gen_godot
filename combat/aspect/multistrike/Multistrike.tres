@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AspectStats" load_steps=2 format=3 uid="uid://cbqj3uxh6ylw6"]
+
+[ext_resource type="Script" path="res://combat/aspect/AspectStats.gd" id="1_cbgd7"]
+
+[resource]
+script = ExtResource("1_cbgd7")
+aspect_name = "Мультиудар"
+description = "Повторно атакует цель 1+(Lvl/100) раз"
+tags = Array[String](["Empty", "Attack"])

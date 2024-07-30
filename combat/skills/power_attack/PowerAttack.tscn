@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwg88mn0pae6g"]
+
+[ext_resource type="Script" path="res://combat/skills/power_attack/PowerAttack.gd" id="1_8ukvf"]
+[ext_resource type="Resource" uid="uid://cmiyyxt5rga6f" path="res://combat/skills/power_attack/PowerAttack.tres" id="2_salmn"]
+[ext_resource type="PackedScene" uid="uid://djtlmpr4xtox4" path="res://combat/aspect/multistrike/Multistrike.tscn" id="3_n4nwv"]
+[ext_resource type="PackedScene" uid="uid://hjf3cil0m70l" path="res://component/LevelComponent.tscn" id="4_exim3"]
+
+[node name="PowerAttack" type="Node2D" node_paths=PackedStringArray("level")]
+script = ExtResource("1_8ukvf")
+stats = ExtResource("2_salmn")
+level = NodePath("LevelComponent")
+aspects = ExtResource("3_n4nwv")
+
+[node name="LevelComponent" parent="." instance=ExtResource("4_exim3")]

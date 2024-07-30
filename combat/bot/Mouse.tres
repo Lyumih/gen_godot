@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StartingStats" load_steps=3 format=3 uid="uid://bv2px22e1xilc"]
+
+[ext_resource type="Script" path="res://combat/jobs/StartingStats.gd" id="1_4a62w"]
+[ext_resource type="Texture2D" uid="uid://cg6cihif8ihbc" path="res://assets/game-icons/units/mouse.svg" id="2_uvpqv"]
+
+[resource]
+script = ExtResource("1_4a62w")
+job_name = "Mouse"
+texture = ExtResource("2_uvpqv")
+max_health = 3
+max_mana = 0
+strength = 2
+defence = 0
+speed = 3
+heal = 0

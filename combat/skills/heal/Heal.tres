@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SkillStats" load_steps=2 format=3 uid="uid://bbpwyphovjyt8"]
+
+[ext_resource type="Script" path="res://combat/skills/SkillStats.gd" id="1_dickl"]
+
+[resource]
+script = ExtResource("1_dickl")
+skill_name = "Heal"
+power = 2
+cost = 1
+mana = 1
+damage = 0
+heal = 10
+chance = 100

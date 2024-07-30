@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dljfuo2geo3mu"]
+
+[ext_resource type="Script" path="res://component/ActiveComponent.gd" id="1_04hjq"]
+
+[node name="ActiveComponent" type="Node2D"]
+script = ExtResource("1_04hjq")

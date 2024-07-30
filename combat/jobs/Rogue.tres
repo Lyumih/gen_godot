@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StartingStats" load_steps=3 format=3 uid="uid://6uemgng5dpyv"]
+
+[ext_resource type="Script" path="res://combat/jobs/StartingStats.gd" id="1_o47fy"]
+[ext_resource type="Texture2D" uid="uid://lfmcoxs8knh0" path="res://assets/game-icons/units/cowled.svg" id="2_7nvth"]
+
+[resource]
+script = ExtResource("1_o47fy")
+job_name = "Rogue"
+texture = ExtResource("2_7nvth")
+max_health = 8
+max_mana = 4
+strength = 2
+defence = 3
+speed = 5
+heal = 0

@@ -1,0 +1,109 @@
+[gd_scene load_steps=16 format=3 uid="uid://3sfjuf25228m"]
+
+[ext_resource type="PackedScene" uid="uid://5qbvpm0ullpb" path="res://unit/player.tscn" id="1_8cc7s"]
+[ext_resource type="Script" path="res://Battle.gd" id="2_5itrb"]
+[ext_resource type="Resource" uid="uid://6uemgng5dpyv" path="res://combat/jobs/Rogue.tres" id="2_l5806"]
+[ext_resource type="PackedScene" uid="uid://cswloi0tus5fp" path="res://inventory/inventory.tscn" id="3_cnhd3"]
+[ext_resource type="Resource" uid="uid://cmiyyxt5rga6f" path="res://combat/skills/power_attack/PowerAttack.tres" id="3_jhky7"]
+[ext_resource type="Resource" uid="uid://bbpwyphovjyt8" path="res://combat/skills/heal/Heal.tres" id="4_kpl0p"]
+[ext_resource type="PackedScene" uid="uid://1u74d5d8nucc" path="res://menu/menu.tscn" id="4_xhjyn"]
+[ext_resource type="PackedScene" uid="uid://si7taig2uamb" path="res://unit/Actions.tscn" id="5_w7wqg"]
+[ext_resource type="PackedScene" uid="uid://c4ijgivqc8cxa" path="res://history/History.tscn" id="9_roi5d"]
+[ext_resource type="PackedScene" uid="uid://kscdultu6hj2" path="res://game_actions.tscn" id="10_b0pl6"]
+[ext_resource type="Resource" uid="uid://b6cwd6d6vvig3" path="res://combat/bot/Crab.tres" id="13_gok6c"]
+[ext_resource type="PackedScene" uid="uid://b5mrsxwdiberf" path="res://speed_panel.tscn" id="14_631qd"]
+[ext_resource type="Resource" uid="uid://dk6mispte8ax" path="res://combat/bot/Bee.tres" id="14_mq0sg"]
+[ext_resource type="PackedScene" uid="uid://4aaq4clcmslf" path="res://skills_manager.tscn" id="15_4bkxj"]
+[ext_resource type="PackedScene" uid="uid://dsbg3vlkvgee" path="res://component/TurnComponent.tscn" id="15_e48cs"]
+
+[node name="World" type="Node2D"]
+
+[node name="Menu" parent="." instance=ExtResource("4_xhjyn")]
+visible = false
+offset_left = 48.0
+offset_top = 87.0
+offset_right = 224.0
+offset_bottom = 503.0
+
+[node name="Battle" type="Node2D" parent="."]
+visible = false
+script = ExtResource("2_5itrb")
+
+[node name="Player" parent="Battle" groups=["players"] instance=ExtResource("1_8cc7s")]
+position = Vector2(112, 202)
+STATS = ExtResource("2_l5806")
+SKILLS = Array[Resource("res://combat/skills/SkillStats.gd")]([ExtResource("3_jhky7"), ExtResource("4_kpl0p"), ExtResource("4_kpl0p")])
+unit_name = "Rog"
+
+[node name="Player2" parent="Battle" groups=["players"] instance=ExtResource("1_8cc7s")]
+position = Vector2(109, 417)
+SKILLS = Array[Resource("res://combat/skills/SkillStats.gd")]([ExtResource("4_kpl0p"), ExtResource("3_jhky7")])
+unit_name = "Fight"
+
+[node name="GameActions" parent="Battle" instance=ExtResource("10_b0pl6")]
+offset_left = 624.0
+offset_top = 536.0
+offset_right = 1071.0
+offset_bottom = 584.0
+
+[node name="UnitActions" parent="Battle" instance=ExtResource("5_w7wqg")]
+offset_left = 208.0
+offset_top = 544.0
+offset_right = 704.0
+offset_bottom = 624.0
+
+[node name="History" parent="Battle" instance=ExtResource("9_roi5d")]
+offset_left = 480.0
+offset_top = 336.0
+offset_right = 752.0
+offset_bottom = 544.0
+
+[node name="Inventory" parent="Battle" instance=ExtResource("3_cnhd3")]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 800.0
+offset_top = 336.0
+offset_right = 1128.0
+offset_bottom = 544.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="SpeedPanel" parent="Battle" instance=ExtResource("14_631qd")]
+offset_left = 416.0
+offset_top = 0.0
+offset_right = 840.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TurnComponent" parent="Battle" instance=ExtResource("15_e48cs")]
+
+[node name="EnemiesContainer" type="VBoxContainer" parent="Battle"]
+offset_left = 568.0
+offset_top = 96.0
+offset_right = 752.0
+offset_bottom = 488.0
+
+[node name="Enemy1" parent="Battle/EnemiesContainer" groups=["enemies"] instance=ExtResource("1_8cc7s")]
+position = Vector2(120, 105)
+STATS = ExtResource("13_gok6c")
+
+[node name="Enemy2" parent="Battle/EnemiesContainer" groups=["enemies"] instance=ExtResource("1_8cc7s")]
+position = Vector2(120, 320)
+STATS = ExtResource("14_mq0sg")
+
+[node name="SkillsManager" parent="." instance=ExtResource("15_4bkxj")]
+
+[connection signal="init_skills" from="Battle/Player" to="Battle/UnitActions" method="_on_player_init_skills"]
+[connection signal="init_skills" from="Battle/Player2" to="Battle/UnitActions" method="_on_player_init_skills"]
+[connection signal="leave_battle" from="Battle/GameActions" to="Battle" method="_on_game_actions_leave_battle"]
+[connection signal="search_enemy" from="Battle/GameActions" to="Battle" method="_on_game_actions_search_enemy"]
+[connection signal="skip_turn" from="Battle/GameActions" to="Battle" method="_on_game_actions_skip_turn"]
+[connection signal="attacked" from="Battle/UnitActions" to="Battle" method="_on_unit_actions_attacked"]
+[connection signal="skill_activated" from="Battle/UnitActions" to="Battle" method="_on_unit_actions_skill_activated"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://kscdultu6hj2"]
+
+[ext_resource type="Script" path="res://game_actions.gd" id="1_v2c14"]
+
+[node name="GameActions" type="HBoxContainer"]
+offset_right = 307.0
+offset_bottom = 64.0
+script = ExtResource("1_v2c14")
+
+[node name="Skip" type="Button" parent="."]
+layout_mode = 2
+text = "Пропустить ход"
+
+[node name="Search" type="Button" parent="."]
+layout_mode = 2
+text = " Поиск врага"
+
+[node name="Leave" type="Button" parent="."]
+layout_mode = 2
+text = "Сбежать и полечиться"
+
+[connection signal="button_down" from="Skip" to="." method="_on_skip_button_down"]
+[connection signal="button_down" from="Search" to="." method="_on_search_button_down"]
+[connection signal="button_down" from="Leave" to="." method="_on_leave_button_down"]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StartingStats" load_steps=3 format=3 uid="uid://dk6mispte8ax"]
+
+[ext_resource type="Script" path="res://combat/jobs/StartingStats.gd" id="1_at8f3"]
+[ext_resource type="Texture2D" uid="uid://cjxntynppp2gj" path="res://assets/game-icons/units/bee.svg" id="2_mm3aw"]
+
+[resource]
+script = ExtResource("1_at8f3")
+job_name = "Bee"
+texture = ExtResource("2_mm3aw")
+max_health = 10
+max_mana = 4
+strength = 3
+defence = 2
+speed = 6
+heal = 2

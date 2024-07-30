@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StartingStats" load_steps=3 format=3 uid="uid://bpnreocxk7tx0"]
+
+[ext_resource type="Script" path="res://combat/jobs/StartingStats.gd" id="1_knaye"]
+[ext_resource type="Texture2D" uid="uid://cjsfjpar6c8mn" path="res://assets/game-icons/units/spiked-dragon-head.svg" id="2_a5xn4"]
+
+[resource]
+script = ExtResource("1_knaye")
+job_name = "Dragon"
+texture = ExtResource("2_a5xn4")
+max_health = 100
+max_mana = 0
+strength = 4
+defence = 0
+speed = 2
+heal = 0

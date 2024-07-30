@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SkillStats" load_steps=2 format=3 uid="uid://cmiyyxt5rga6f"]
+
+[ext_resource type="Script" path="res://combat/skills/SkillStats.gd" id="1_cgxnl"]
+
+[resource]
+script = ExtResource("1_cgxnl")
+skill_name = "PowerAttack"
+description = "Сильная атака по врагу"
+tags = Array[String](["Attack", "Physical"])
+power = 4
+speed = 0
+cd = 0
+cost = 2
+mana = 2
+damage = 10
+heal = 0
+chance = 100

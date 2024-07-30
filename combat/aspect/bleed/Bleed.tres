@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AspectStats" load_steps=2 format=3 uid="uid://cqsf5q50va186"]
+
+[ext_resource type="Script" path="res://combat/aspect/AspectStats.gd" id="1_gm1wf"]
+
+[resource]
+script = ExtResource("1_gm1wf")
+aspect_name = "Кровотечение"
+description = "С шансом LVL% Накладывает кровотечение на врага"
+tags = Array[String](["Attack", "Skill", "Physical"])

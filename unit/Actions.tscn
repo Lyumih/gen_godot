@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://si7taig2uamb"]
+
+[ext_resource type="Script" path="res://unit/Actions.gd" id="1_b2qn3"]
+[ext_resource type="Texture2D" uid="uid://w4bmn5cs0ejm" path="res://assets/game-icons/skills/gladius.svg" id="2_rtsqn"]
+
+[node name="Actions" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_bottom = 24.072
+script = ExtResource("1_b2qn3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+offset_right = 600.0
+offset_bottom = 72.0
+
+[node name="Attack" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 2.06
+tooltip_text = "Атаковать"
+theme_override_constants/icon_max_width = 64
+icon = ExtResource("2_rtsqn")
+
+[node name="InfoContainer" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_top = -40.0
+offset_right = 147.0
+
+[node name="Info" type="Label" parent="InfoContainer"]
+layout_mode = 2
+text = "Описание умения"
+
+[connection signal="button_down" from="HBoxContainer/Attack" to="." method="_on_button_button_down"]
+[connection signal="mouse_entered" from="HBoxContainer/Attack" to="." method="_on_attack_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/Attack" to="." method="_on_attack_mouse_exited"]

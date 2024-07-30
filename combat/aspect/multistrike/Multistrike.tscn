@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://djtlmpr4xtox4"]
+
+[ext_resource type="Script" path="res://combat/aspect/multistrike/Multistrike.gd" id="1_4stu0"]
+[ext_resource type="Resource" uid="uid://cbqj3uxh6ylw6" path="res://combat/aspect/multistrike/Multistrike.tres" id="2_806pm"]
+[ext_resource type="PackedScene" uid="uid://hjf3cil0m70l" path="res://component/LevelComponent.tscn" id="3_j7xux"]
+
+[node name="Multistrike" type="Node2D" node_paths=PackedStringArray("level")]
+script = ExtResource("1_4stu0")
+stats = ExtResource("2_806pm")
+level = NodePath("LevelComponent")
+
+[node name="LevelComponent" parent="." instance=ExtResource("3_j7xux")]

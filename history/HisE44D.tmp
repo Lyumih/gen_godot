@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4ijgivqc8cxa"]
+
+[ext_resource type="Script" path="res://history/History.gd" id="1_3unhh"]
+
+[node name="History" type="RichTextLabel"]
+offset_right = 248.0
+offset_bottom = 312.0
+text = "История"
+script = ExtResource("1_3unhh")
+messages = Array[String](["Начало игры", "История загружена"])

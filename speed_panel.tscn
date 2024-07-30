@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5mrsxwdiberf"]
+
+[ext_resource type="Script" path="res://speed_panel.gd" id="1_577rm"]
+
+[node name="SpeedPanel" type="HBoxContainer"]
+offset_left = 80.0
+offset_top = 16.0
+offset_right = 864.0
+offset_bottom = 56.0
+script = ExtResource("1_577rm")
+
+[node name="Turn" type="Label" parent="."]
+layout_mode = 2
+text = "Ход: 0"
+
+[node name="UnitPanel" type="HBoxContainer" parent="."]
+layout_mode = 2

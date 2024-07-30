@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StartingStats" load_steps=3 format=3 uid="uid://b6cwd6d6vvig3"]
+
+[ext_resource type="Script" path="res://combat/jobs/StartingStats.gd" id="1_7rue7"]
+[ext_resource type="Texture2D" uid="uid://bq4bo86jtanxq" path="res://assets/game-icons/units/crab.svg" id="2_nul40"]
+
+[resource]
+script = ExtResource("1_7rue7")
+job_name = "Crab"
+texture = ExtResource("2_nul40")
+max_health = 4
+max_mana = 6
+strength = 1
+defence = 1
+speed = 3
+heal = 2

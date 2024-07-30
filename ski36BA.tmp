@@ -1,0 +1,161 @@
+[gd_scene load_steps=3 format=3 uid="uid://4aaq4clcmslf"]
+
+[ext_resource type="Script" path="res://skills_manager.gd" id="1_1ahik"]
+[ext_resource type="Texture2D" uid="uid://tiw20n74sbyc" path="res://assets/game-icons/skills/blade-drag.svg" id="1_1uknj"]
+
+[node name="SkillsManager" type="Node2D"]
+script = ExtResource("1_1ahik")
+skills = Array[Resource("res://combat/skills/Skill.gd")]([null])
+
+[node name="Manager" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 16
+
+[node name="SkillInfoPanel" type="HBoxContainer" parent="Manager"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Manager/SkillInfoPanel"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 64
+icon = ExtResource("1_1uknj")
+
+[node name="SkillInfo" type="Label" parent="Manager/SkillInfoPanel"]
+layout_mode = 2
+text = "Имя: Сильный удар (power attack)
+Уровень: 57 (43% шанс на прокачку при использовании)
+Скорость: 4
+Перезарядка: 3
+Описание: Сильно бьёт по цели. 
+Урон: 150%+Lvl%
+Теги: Attack, Physical, Melee, Strike"
+
+[node name="LevelPanel" type="VBoxContainer" parent="Manager"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Manager/LevelPanel"]
+layout_mode = 2
+
+[node name="LevelUp" type="Button" parent="Manager/LevelPanel/HBoxContainer"]
+layout_mode = 2
+text = "+1 ур"
+
+[node name="LevelUpMany" type="Button" parent="Manager/LevelPanel/HBoxContainer"]
+layout_mode = 2
+text = "+25 ур"
+
+[node name="LevelReset" type="Button" parent="Manager/LevelPanel/HBoxContainer"]
+layout_mode = 2
+text = "Сбросить всё"
+
+[node name="Label2" type="Label" parent="Manager"]
+layout_mode = 2
+text = "Аспекты умений прокачиваются после победы.
+За каждый 20 уровней открывается 1 аспект"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Manager"]
+layout_mode = 2
+
+[node name="AspectPanel" type="VBoxContainer" parent="Manager/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Manager/HBoxContainer/AspectPanel"]
+layout_mode = 2
+text = "Аспекты.
+"
+
+[node name="Aspect" type="HBoxContainer" parent="Manager/HBoxContainer/AspectPanel"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Manager/HBoxContainer/AspectPanel/Aspect"]
+layout_mode = 2
+text = "-"
+
+[node name="Button2" type="Button" parent="Manager/HBoxContainer/AspectPanel/Aspect"]
+layout_mode = 2
+text = "+25 ур"
+
+[node name="Label" type="Label" parent="Manager/HBoxContainer/AspectPanel/Aspect"]
+layout_mode = 2
+text = "Мультиудар. 
+Ур. 13 (87% шанс на прокачку после победы)
+Повторно атакует цель 1 раз"
+
+[node name="Aspect2" type="HBoxContainer" parent="Manager/HBoxContainer/AspectPanel"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Manager/HBoxContainer/AspectPanel/Aspect2"]
+layout_mode = 2
+text = "-"
+
+[node name="Button3" type="Button" parent="Manager/HBoxContainer/AspectPanel/Aspect2"]
+layout_mode = 2
+text = "+25 ур"
+
+[node name="Label" type="Label" parent="Manager/HBoxContainer/AspectPanel/Aspect2"]
+layout_mode = 2
+text = "Кровотечение. 
+Ур. 43 (57% шанс на прокачку после победы)
+С шансом 43% накладывает кровотечение на врага"
+
+[node name="AllAspects" type="VBoxContainer" parent="Manager/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Manager/HBoxContainer/AllAspects"]
+layout_mode = 2
+text = "Доступные аспекты по тегам"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Manager/HBoxContainer/AllAspects"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Manager/HBoxContainer/AllAspects/HBoxContainer2"]
+layout_mode = 2
+text = "+"
+
+[node name="Label" type="Label" parent="Manager/HBoxContainer/AllAspects/HBoxContainer2"]
+layout_mode = 2
+text = "Имя: Мультиудар Аспект
+Тег: Attack
+Описание: Повторно атакует цель 1+(Lvl/100) раз
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Manager/HBoxContainer/AllAspects"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Manager/HBoxContainer/AllAspects/HBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="Label" type="Label" parent="Manager/HBoxContainer/AllAspects/HBoxContainer"]
+layout_mode = 2
+text = "Имя: Сила Аспект
+Тег: Attack
+Описание: Усиливает умение на 50% + LVL%
+"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Manager/HBoxContainer/AllAspects"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Manager/HBoxContainer/AllAspects/HBoxContainer3"]
+layout_mode = 2
+text = "+"
+
+[node name="Label" type="Label" parent="Manager/HBoxContainer/AllAspects/HBoxContainer3"]
+layout_mode = 2
+text = "Имя: Сплеш
+Тег: Attack
+Описание: Атакует 1+LVL(/100) врагов рядом"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Manager/HBoxContainer/AllAspects"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Manager/HBoxContainer/AllAspects/HBoxContainer4"]
+layout_mode = 2
+text = "+"
+
+[node name="Label" type="Label" parent="Manager/HBoxContainer/AllAspects/HBoxContainer4"]
+layout_mode = 2
+text = "Имя: Кровотечение
+Тег: Physical
+Описание: С шансом LVL% Накладывает кровотечение на врага
+"

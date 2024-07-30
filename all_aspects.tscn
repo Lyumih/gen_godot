@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cblwc1v2fyn65"]
+
+[ext_resource type="Script" path="res://all_aspects.gd" id="1_0b66n"]
+[ext_resource type="PackedScene" uid="uid://djtlmpr4xtox4" path="res://combat/aspect/multistrike/Multistrike.tscn" id="2_0cb6a"]
+[ext_resource type="PackedScene" uid="uid://dhixvntxjje1i" path="res://combat/aspect/bleed/Bleed.tscn" id="3_6cshk"]
+
+[node name="AllAspects" type="VBoxContainer"]
+script = ExtResource("1_0b66n")
+aspects = Array[PackedScene]([ExtResource("3_6cshk"), ExtResource("2_0cb6a")])
+
+[node name="AspectTitle" type="Label" parent="."]
+layout_mode = 2
+text = "Доступные аспекты по тегам"
+
+[node name="AspectList" type="VBoxContainer" parent="."]
+layout_mode = 2
