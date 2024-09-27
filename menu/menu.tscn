@@ -1,29 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://1u74d5d8nucc"]
+[gd_scene load_steps=3 format=3 uid="uid://1u74d5d8nucc"]
 
 [ext_resource type="Script" path="res://menu/menu.gd" id="1_6x8mk"]
+[ext_resource type="Theme" uid="uid://bkxava4kbcx2a" path="res://test_theme.tres" id="2_xhent"]
 
-[node name="Menu" type="Panel"]
-offset_left = 40.0
-offset_top = 120.0
-offset_right = 216.0
-offset_bottom = 536.0
+[node name="Menu" type="HBoxContainer"]
+offset_right = 544.0
+offset_bottom = 31.0
 script = ExtResource("1_6x8mk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 176.0
-offset_bottom = 416.0
-
-[node name="NewGame" type="Button" parent="VBoxContainer"]
+[node name="NewGame" type="Button" parent="."]
+visible = false
 layout_mode = 2
+theme = ExtResource("2_xhent")
 text = "Новая игра"
 
-[node name="Continue" type="Button" parent="VBoxContainer"]
+[node name="Battle" type="Button" parent="."]
 layout_mode = 2
+theme = ExtResource("2_xhent")
+text = "Бой"
+
+[node name="Skills" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("2_xhent")
+text = "Умения"
+
+[node name="Continue" type="Button" parent="."]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_xhent")
 text = "Продолжить"
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
+[node name="Exit" type="Button" parent="."]
 layout_mode = 2
+theme = ExtResource("2_xhent")
 text = "Выход"
 
-[connection signal="button_down" from="VBoxContainer/Exit" to="." method="_on_exit_button_down"]
+[connection signal="button_down" from="Battle" to="." method="_on_battle_button_down"]
+[connection signal="button_down" from="Skills" to="." method="_on_skills_button_down"]
+[connection signal="button_down" from="Exit" to="." method="_on_exit_button_down"]

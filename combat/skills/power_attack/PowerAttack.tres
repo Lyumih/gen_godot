@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="SkillStats" load_steps=2 format=3 uid="uid://cmiyyxt5rga6f"]
+[gd_resource type="Resource" script_class="SkillStats" load_steps=3 format=3 uid="uid://cmiyyxt5rga6f"]
 
 [ext_resource type="Script" path="res://combat/skills/SkillStats.gd" id="1_cgxnl"]
+[ext_resource type="Texture2D" uid="uid://tiw20n74sbyc" path="res://assets/game-icons/skills/blade-drag.svg" id="1_jmrwy"]
 
 [resource]
 script = ExtResource("1_cgxnl")
 skill_name = "PowerAttack"
-description = "Сильная атака по врагу"
+description = " Бьёт на 10 (10 + 1% за ур.) + Атака здоровья"
+icon = ExtResource("1_jmrwy")
 tags = Array[String](["Attack", "Physical"])
 power = 4
 speed = 0

@@ -9,7 +9,7 @@ signal hit
 signal init_skills(skills)
 
 @export var STATS: StartingStats
-@export var SKILLS: Array[SkillStats]
+@export var SKILLS: Array[Skill]
 
 @export var speed_component: SpeedComponent
 
@@ -21,11 +21,13 @@ var damage: int = 3
 
 func _ready():
 	init_skills.emit(SKILLS)
-	$Name.text = unit_name
+	$InfoPanel/Name.text = unit_name
 	speed_component.max_speed = STATS.speed
 	speed_component.speed = STATS.speed
 	info_text()
 	$Sprite2D.texture = STATS.texture
+	$HelathBar.value = health
+	$HelathBar.max_value = health
 
 func take_damage(amount): 
 	var old_health = health
@@ -37,8 +39,9 @@ func take_damage(amount):
 		
 ## Выведение текста в панель информации по герою
 func info_text():
-	var info = 'Статистика\n' + str('Уровни:\n ', levels) + str('\nЗдоровье: ', health, '\nАтака', damage)
-	$Info.text = info
+	$HelathBar.value = health
+	var info = 'Статистика\n' + str('Уровни:\n ', levels) + str('\nЗдоровье: ', health, '\nАтака: ', damage)
+	$InfoPanel/Info.text = info
 
 ## Поднятие уровня в динамическом словаре
 func level_up(stat_name: String, value_up: int = 1):

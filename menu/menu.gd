@@ -1,14 +1,4 @@
-extends Panel
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+extends HBoxContainer
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("menu"):
@@ -19,4 +9,14 @@ func _physics_process(delta):
 func _on_exit_button_down():
 	print('exit')
 	get_tree().quit()
+	pass # Replace with function body.
+
+
+func _on_battle_button_down() -> void:
+	get_tree().change_scene_to_file("res://battle.tscn")
+	pass # Replace with function body.
+
+
+func _on_skills_button_down() -> void:
+	get_tree().change_scene_to_file("res://skills_manager.tscn")
 	pass # Replace with function body.

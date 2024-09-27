@@ -4,6 +4,7 @@ class_name SkillStats
 
 @export var skill_name: String = "Skill"
 @export var description: String = "Skill description"
+@export var icon = load("res://assets/game-icons/skills/blade-drag.svg")
 
 @export var tags: Array[String] = []
 
@@ -15,6 +16,3 @@ class_name SkillStats
 @export var damage: int
 @export var heal: int
 @export var chance: int
-
-func test():
-	print('test')

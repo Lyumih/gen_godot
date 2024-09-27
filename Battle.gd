@@ -4,7 +4,7 @@ extends Node2D
 func _on_game_actions_search_enemy():
 	var enemy = preload("res://unit/player.tscn").instantiate()
 	enemy.STATS = load("res://combat/bot/Mouse.tres")
-	enemy.position = $EnemiesContainer.position
+	enemy.position = $UnitsContainer.position
 	$History.add_log('Поиск нового врага')
 	self.add_child(enemy)
 	#$Enemy.queue_free()
@@ -22,21 +22,24 @@ func _on_unit_actions_attacked():
 	print('_on_unit_actions_attacked', enemies)
 	if enemies.size() > 0:
 		enemies[0].get_parent().take_damage(1)
+		$History.add_log('Атака ')
 		print()
 	next_turn()
 
 ## Активировать умение
-func _on_unit_actions_skill_activated(value):
-	print('skill', value)
+func _on_unit_actions_skill_activated(skill: Skill):
+	print('skill', skill)
 	var enemies = get_tree().get_nodes_in_group('enemies')
-	value.test()
+	skill.test()
+	skill.use()
+	$History.add_log('Использовано умение')
 	next_turn()
 
 ## Пропустить ход
 func _on_game_actions_skip_turn():
+	$History.add_log('Пропуск хода')
 	next_turn()
 	
 func next_turn():
 	$TurnComponent.next_turn()
-	$SpeedPanel.turn = $TurnComponent.turn
-
+	$ActionsPanel/SpeedPanel.turn = $TurnComponent.turn

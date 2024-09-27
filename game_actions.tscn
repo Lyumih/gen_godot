@@ -1,22 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://kscdultu6hj2"]
+[gd_scene load_steps=3 format=3 uid="uid://kscdultu6hj2"]
 
 [ext_resource type="Script" path="res://game_actions.gd" id="1_v2c14"]
+[ext_resource type="Theme" uid="uid://bkxava4kbcx2a" path="res://test_theme.tres" id="2_sjyrk"]
 
 [node name="GameActions" type="HBoxContainer"]
-offset_right = 307.0
-offset_bottom = 64.0
+offset_right = 456.0
+offset_bottom = 40.0
 script = ExtResource("1_v2c14")
 
 [node name="Skip" type="Button" parent="."]
 layout_mode = 2
+theme = ExtResource("2_sjyrk")
 text = "Пропустить ход"
 
 [node name="Search" type="Button" parent="."]
 layout_mode = 2
+theme = ExtResource("2_sjyrk")
 text = " Поиск врага"
 
 [node name="Leave" type="Button" parent="."]
 layout_mode = 2
+theme = ExtResource("2_sjyrk")
 text = "Сбежать и полечиться"
 
 [connection signal="button_down" from="Skip" to="." method="_on_skip_button_down"]

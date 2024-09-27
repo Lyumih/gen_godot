@@ -21,7 +21,6 @@ func update_info():
 			"name":_aspect.stats.aspect_name,
 			"level": _aspect.level.level,
 			"chance": _aspect.level.chance,
-# TODO: разобраться, почему previous_chance не отрабатывает
 			"previous_chance": _aspect.level.logger.previous_chance,
 			"description": _aspect.stats.description
 			})

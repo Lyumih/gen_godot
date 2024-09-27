@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://tiw20n74sbyc" path="res://assets/game-icons/skills/blade-drag.svg" id="1_1uknj"]
 [ext_resource type="PackedScene" uid="uid://cwg88mn0pae6g" path="res://combat/skills/power_attack/PowerAttack.tscn" id="2_dvdp5"]
 [ext_resource type="PackedScene" uid="uid://djtlmpr4xtox4" path="res://combat/aspect/multistrike/Multistrike.tscn" id="2_y2rr4"]
-[ext_resource type="PackedScene" uid="uid://r4hignpmer4t" path="res://aspect.tscn" id="4_q8kya"]
 [ext_resource type="PackedScene" uid="uid://cblwc1v2fyn65" path="res://all_aspects.tscn" id="6_2g8o4"]
 [ext_resource type="PackedScene" uid="uid://dhixvntxjje1i" path="res://combat/aspect/bleed/Bleed.tscn" id="7_pbmjq"]
+[ext_resource type="PackedScene" uid="uid://1u74d5d8nucc" path="res://menu/menu.tscn" id="7_yaapg"]
 
 [node name="SkillsManager" type="Node2D" node_paths=PackedStringArray("skill")]
 script = ExtResource("1_1ahik")
@@ -15,6 +15,7 @@ skill = NodePath("PowerAttack")
 [node name="Multistrike" parent="." instance=ExtResource("2_y2rr4")]
 
 [node name="PowerAttack" parent="." instance=ExtResource("2_dvdp5")]
+aspects = Array[PackedScene]([ExtResource("2_y2rr4"), ExtResource("7_pbmjq")])
 
 [node name="Manager" type="VBoxContainer" parent="."]
 offset_right = 40.0
@@ -73,29 +74,16 @@ layout_mode = 2
 text = "Аспекты.
 "
 
-[node name="Aspect" parent="Manager/HBoxContainer/AspectPanel" instance=ExtResource("4_q8kya")]
-layout_mode = 2
-
-[node name="Aspect2" type="HBoxContainer" parent="Manager/HBoxContainer/AspectPanel"]
-visible = false
-layout_mode = 2
-
-[node name="Button" type="Button" parent="Manager/HBoxContainer/AspectPanel/Aspect2"]
-layout_mode = 2
-text = "-"
-
-[node name="Button3" type="Button" parent="Manager/HBoxContainer/AspectPanel/Aspect2"]
-layout_mode = 2
-text = "+25 ур"
-
-[node name="Label" type="Label" parent="Manager/HBoxContainer/AspectPanel/Aspect2"]
-layout_mode = 2
-text = "Кровотечение. 
-Ур. 43 (57% шанс на прокачку после победы)
-С шансом 43% накладывает кровотечение на врага"
-
 [node name="AllAspects" parent="Manager/HBoxContainer" instance=ExtResource("6_2g8o4")]
 layout_mode = 2
-aspects = Array[PackedScene]([ExtResource("2_y2rr4"), ExtResource("7_pbmjq")])
+aspects = Array[PackedScene]([])
+
+[node name="Menu" parent="." instance=ExtResource("7_yaapg")]
+offset_left = 608.0
+offset_top = 619.0
+offset_right = 1152.0
+offset_bottom = 650.0
 
 [connection signal="button_down" from="Manager/LevelPanel/HBoxContainer/LevelUp" to="." method="_on_level_up_button_down"]
+[connection signal="button_down" from="Manager/LevelPanel/HBoxContainer/LevelUpMany" to="." method="_on_level_up_many_button_down"]
+[connection signal="button_down" from="Manager/LevelPanel/HBoxContainer/LevelReset" to="." method="_on_level_reset_button_down"]

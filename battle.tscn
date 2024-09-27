@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://d0fmpdevoggfr"]
+
+[ext_resource type="Script" path="res://Battle.gd" id="1_dk0uv"]
+[ext_resource type="PackedScene" uid="uid://5qbvpm0ullpb" path="res://unit/player.tscn" id="2_40q2x"]
+[ext_resource type="Resource" uid="uid://6uemgng5dpyv" path="res://combat/jobs/Rogue.tres" id="3_thwxi"]
+[ext_resource type="PackedScene" uid="uid://kscdultu6hj2" path="res://game_actions.tscn" id="7_ke1wm"]
+[ext_resource type="PackedScene" uid="uid://si7taig2uamb" path="res://unit/Actions.tscn" id="8_yh15h"]
+[ext_resource type="PackedScene" uid="uid://c4ijgivqc8cxa" path="res://history/History.tscn" id="9_imp7n"]
+[ext_resource type="PackedScene" uid="uid://cswloi0tus5fp" path="res://inventory/inventory.tscn" id="10_0xr0n"]
+[ext_resource type="PackedScene" uid="uid://b5mrsxwdiberf" path="res://speed_panel.tscn" id="11_fqt6o"]
+[ext_resource type="PackedScene" uid="uid://cwg88mn0pae6g" path="res://combat/skills/power_attack/PowerAttack.tscn" id="12_51hgo"]
+[ext_resource type="PackedScene" uid="uid://dsbg3vlkvgee" path="res://component/TurnComponent.tscn" id="12_bigft"]
+[ext_resource type="Resource" uid="uid://b6cwd6d6vvig3" path="res://combat/bot/Crab.tres" id="13_g8xhf"]
+[ext_resource type="PackedScene" uid="uid://1u74d5d8nucc" path="res://menu/menu.tscn" id="13_kltf8"]
+[ext_resource type="Resource" uid="uid://dk6mispte8ax" path="res://combat/bot/Bee.tres" id="14_5plux"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_dk0uv")
+
+[node name="UnitsContainer" type="BoxContainer" parent="."]
+offset_top = 16.0
+offset_right = 720.0
+offset_bottom = 448.0
+
+[node name="Player" parent="UnitsContainer" node_paths=PackedStringArray("SKILLS") groups=["players"] instance=ExtResource("2_40q2x")]
+position = Vector2(120, 112)
+STATS = ExtResource("3_thwxi")
+SKILLS = [NodePath("../../PowerAttack")]
+unit_name = "Rog"
+
+[node name="Player2" parent="UnitsContainer" groups=["players"] instance=ExtResource("2_40q2x")]
+position = Vector2(120, 328)
+unit_name = "Fight"
+
+[node name="Enemy1" parent="UnitsContainer" groups=["enemies"] instance=ExtResource("2_40q2x")]
+position = Vector2(440, 112)
+STATS = ExtResource("13_g8xhf")
+
+[node name="Enemy2" parent="UnitsContainer" groups=["enemies"] instance=ExtResource("2_40q2x")]
+position = Vector2(440, 328)
+STATS = ExtResource("14_5plux")
+
+[node name="History" parent="." instance=ExtResource("9_imp7n")]
+offset_left = 768.0
+offset_top = 56.0
+offset_right = 1040.0
+offset_bottom = 264.0
+
+[node name="Inventory" parent="." instance=ExtResource("10_0xr0n")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 768.0
+offset_top = 322.0
+offset_right = 1096.0
+offset_bottom = 530.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="TurnComponent" parent="." instance=ExtResource("12_bigft")]
+
+[node name="PowerAttack" parent="." instance=ExtResource("12_51hgo")]
+
+[node name="Menu" parent="." instance=ExtResource("13_kltf8")]
+offset_left = 608.0
+offset_top = 616.0
+offset_right = 1152.0
+offset_bottom = 647.0
+
+[node name="ActionsPanel" type="VBoxContainer" parent="."]
+offset_left = 79.0
+offset_top = 472.0
+offset_right = 839.0
+offset_bottom = 606.0
+
+[node name="SpeedPanel" parent="ActionsPanel" instance=ExtResource("11_fqt6o")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="UnitActions" parent="ActionsPanel" instance=ExtResource("8_yh15h")]
+layout_mode = 2
+
+[node name="GameActions" parent="ActionsPanel" instance=ExtResource("7_ke1wm")]
+layout_mode = 2
+
+[connection signal="init_skills" from="UnitsContainer/Player" to="ActionsPanel/UnitActions" method="_on_player_init_skills"]
+[connection signal="init_skills" from="UnitsContainer/Player2" to="ActionsPanel/UnitActions" method="_on_player_init_skills"]
+[connection signal="attacked" from="ActionsPanel/UnitActions" to="." method="_on_unit_actions_attacked"]
+[connection signal="skill_activated" from="ActionsPanel/UnitActions" to="." method="_on_unit_actions_skill_activated"]
+[connection signal="leave_battle" from="ActionsPanel/GameActions" to="." method="_on_game_actions_leave_battle"]
+[connection signal="search_enemy" from="ActionsPanel/GameActions" to="." method="_on_game_actions_search_enemy"]
+[connection signal="skip_turn" from="ActionsPanel/GameActions" to="." method="_on_game_actions_skip_turn"]
