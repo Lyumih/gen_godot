@@ -70,3 +70,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 text = "Информация"
 fit_content = true
+
+[node name="SkillInfo" type="Label" parent="InfoPanel"]
+layout_mode = 2
+text = "Умения:"

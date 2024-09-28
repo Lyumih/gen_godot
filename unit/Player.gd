@@ -24,10 +24,11 @@ func _ready():
 	$InfoPanel/Name.text = unit_name
 	speed_component.max_speed = STATS.speed
 	speed_component.speed = STATS.speed
-	info_text()
 	$Sprite2D.texture = STATS.texture
 	$HelathBar.value = health
 	$HelathBar.max_value = health
+	info_text()
+	info_skill_text()
 
 func take_damage(amount): 
 	var old_health = health
@@ -42,6 +43,11 @@ func info_text():
 	$HelathBar.value = health
 	var info = 'Статистика\n' + str('Уровни:\n ', levels) + str('\nЗдоровье: ', health, '\nАтака: ', damage)
 	$InfoPanel/Info.text = info
+	
+## Выведение текста в панель информации по умениям героя
+func info_skill_text():
+	var info = 'Умений: ' + str(SKILLS.size())
+	$InfoPanel/SkillInfo.text = info
 
 ## Поднятие уровня в динамическом словаре
 func level_up(stat_name: String, value_up: int = 1):

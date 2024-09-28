@@ -7,6 +7,7 @@ extends Node2D
 var format_skill_info = "Имя: {name}
 Теги: {tags}
 Описание: {description}
+Подсказка: {hint}
 Уровень: {level}
 Шанс прокачки: {chance}%({previous_chance}) при использовании
 Скорость: {speed}
@@ -28,6 +29,7 @@ func update_info():
 		"name": skill.stats.skill_name,
 		"tags": str(skill.stats.tags),
 		"description": skill.stats.description,
+		"hint": skill.hint(),
 		"level": skill.level.level,
 		"chance": skill.level.chance,
 		"previous_chance": skill.level.logger.previous_chance,

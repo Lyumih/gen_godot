@@ -9,14 +9,15 @@ signal skill_activated(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("SKILL _ready" + str(count_skills))
 	for skill in count_skills:
 		var button_skill = Button.new()
 		$HBoxContainer.add_child(button_skill)
-		button_skill.text = str(skill.skill_name)
-		button_skill.icon = skill.icon
+		button_skill.text = str(skill.stats.skill_name) + '\n' + str(skill.hint())
+		button_skill.icon = skill.stats.icon
 		button_skill.add_theme_constant_override('icon_max_width', 64)
 		button_skill.pressed.connect(self.clickSkill.bind(skill))
-		print(skill)
+		print("SKILL" + str(skill))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -37,7 +38,7 @@ func _on_skill_button_down():
 
 
 func _on_player_init_skills(skills):
-	#count_skills = skills
+	count_skills = skills
 	pass
 
 

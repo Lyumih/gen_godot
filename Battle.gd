@@ -30,9 +30,8 @@ func _on_unit_actions_attacked():
 func _on_unit_actions_skill_activated(skill: Skill):
 	print('skill', skill)
 	var enemies = get_tree().get_nodes_in_group('enemies')
-	skill.test()
 	skill.use()
-	$History.add_log('Использовано умение')
+	$History.add_log('Использовано умение ' + str(skill.stats.skill_name) + ' на ' + str(skill.first_target()))
 	next_turn()
 
 ## Пропустить ход
