@@ -4,6 +4,11 @@ class_name TurnComponent
 @export var turn := 0
 
 func next_turn():
+	print('Next turn')
+	print('Next turn')
+	print('Next turn')
+	print('Next turn')
+	print('Next turn')
 	var units = get_tree().get_nodes_in_group('speeds') as Array[Player]
 	if units:
 		units.sort_custom(func(a, b): return a.speed > b.speed)

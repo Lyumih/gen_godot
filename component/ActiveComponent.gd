@@ -8,10 +8,13 @@ var ACTIVES_GROUP = 'actives'
 		isActive = new_value
 		if isActive:
 			$'.'.add_to_group(ACTIVES_GROUP)
-			$'..'.scale = Vector2(1.25, 1.25)
 		else: 
 			$'.'.remove_from_group(ACTIVES_GROUP)
-			$'..'.scale = Vector2(1.0, 1.0)
+		$ActiveHint.visible = isActive
+		
+func _ready() -> void:
+	$ActiveHint.hide()
+	
 
 func set_active(active: bool):
 	isActive = active

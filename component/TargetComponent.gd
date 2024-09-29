@@ -16,10 +16,8 @@ var TARGETS_GROUPS = 'targets'
 func update():
 	if isTarget:
 		$'.'.add_to_group(TARGETS_GROUPS)
-		collisionObject2D.skew = 0.2
 	else:
 		$'.'.remove_from_group(TARGETS_GROUPS)
-		collisionObject2D.skew = 0
 	$TargetHint.visible = isTarget
 
 ## Коннект переключения мыши к компоненту

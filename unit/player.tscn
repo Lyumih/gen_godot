@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5qbvpm0ullpb"]
+[gd_scene load_steps=11 format=3 uid="uid://5qbvpm0ullpb"]
 
 [ext_resource type="Script" path="res://unit/Player.gd" id="1_lplo4"]
 [ext_resource type="Shader" path="res://unit/outline.gdshader" id="2_i1p3e"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://biarprldvpwnj" path="res://assets/game-icons/units/barbute.svg" id="4_6e24c"]
 [ext_resource type="PackedScene" uid="uid://cvb88kyxcxrg7" path="res://component/SpeedComponent.tscn" id="5_ahe1d"]
 [ext_resource type="PackedScene" uid="uid://dljfuo2geo3mu" path="res://component/ActiveComponent.tscn" id="6_j0jhr"]
+[ext_resource type="PackedScene" uid="uid://dsbg3vlkvgee" path="res://component/TurnComponent.tscn" id="7_0twfp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nn421"]
 shader = ExtResource("2_i1p3e")
@@ -21,11 +22,6 @@ input_pickable = true
 script = ExtResource("1_lplo4")
 STATS = ExtResource("2_sik56")
 speed_component = NodePath("SpeedComponent")
-levels = {
-"attack": 2,
-"heal": 3
-}
-unit_name = "Юнит?"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_nn421")
@@ -38,14 +34,17 @@ texture = ExtResource("4_6e24c")
 shape = SubResource("RectangleShape2D_pfscg")
 
 [node name="TargetComponent" parent="." node_paths=PackedStringArray("collisionObject2D", "sprite2D") instance=ExtResource("3_ramnd")]
-position = Vector2(-41, 48)
+position = Vector2(8, -45)
 collisionObject2D = NodePath("..")
 sprite2D = NodePath("../Sprite2D")
 
 [node name="SpeedComponent" parent="." instance=ExtResource("5_ahe1d")]
-position = Vector2(-14, 48)
+position = Vector2(-38, 38)
 
 [node name="ActiveComponent" parent="." instance=ExtResource("6_j0jhr")]
+position = Vector2(-41, -38)
+
+[node name="TurnComponent" parent="." instance=ExtResource("7_0twfp")]
 
 [node name="HelathBar" type="ProgressBar" parent="."]
 offset_left = -41.0
@@ -69,7 +68,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Info" type="RichTextLabel" parent="InfoPanel"]
 layout_mode = 2
-text = "Информация"
+text = "❤️100
+⚕2 💪10"
 fit_content = true
 
 [node name="SkillInfo" type="Label" parent="InfoPanel"]

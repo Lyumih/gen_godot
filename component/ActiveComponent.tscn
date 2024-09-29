@@ -4,3 +4,9 @@
 
 [node name="ActiveComponent" type="Node2D" groups=["actives"]]
 script = ExtResource("1_04hjq")
+
+[node name="ActiveHint" type="Label" parent="."]
+offset_right = 41.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 24
+text = "💎"

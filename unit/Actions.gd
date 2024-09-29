@@ -23,7 +23,7 @@ func update_skills_panel():
 	for skill in player.SKILLS:
 		var button_skill = Button.new()
 		$SkillContainer.add_child(button_skill)
-		button_skill.text = str(skill.stats.skill_name) + '\nУр:' + str(skill.level.level) + '\n' + str(skill.hint())
+		button_skill.text = str(skill.stats.skill_name) + '\nУр:' + str(skill.level.level) + '. ' + str(skill.level.logger.previous_chance) + '%' + '\n' + str(skill.hint())
 		button_skill.icon = skill.stats.icon
 		button_skill.add_theme_constant_override('icon_max_width', 64)
 		button_skill.pressed.connect(self.clickSkill.bind(skill))

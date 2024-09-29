@@ -27,20 +27,22 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(120, 88)
 STATS = ExtResource("3_thwxi")
 SKILLS = [NodePath("../../HealSkill"), NodePath("../../PowerAttack")]
-unit_name = "Rog"
+unit_name = "Рога"
 
 [node name="Player2" parent="UnitsContainer" node_paths=PackedStringArray("SKILLS") groups=["players"] instance=ExtResource("2_40q2x")]
 position = Vector2(120, 321)
 SKILLS = [NodePath("../../PowerAttack")]
-unit_name = "Fight"
+unit_name = "Файтер"
 
 [node name="Enemy1" parent="UnitsContainer" groups=["enemies"] instance=ExtResource("2_40q2x")]
 position = Vector2(448, 88)
 STATS = ExtResource("13_g8xhf")
+unit_name = "Краб"
 
 [node name="Enemy2" parent="UnitsContainer" groups=["enemies"] instance=ExtResource("2_40q2x")]
 position = Vector2(448, 322)
 STATS = ExtResource("14_5plux")
+unit_name = "Пчела"
 
 [node name="History" parent="." instance=ExtResource("9_imp7n")]
 offset_left = 768.0
