@@ -1,11 +1,12 @@
 extends Skill
 class_name PowerAttack
 
-func use_logic():
+func use_logic() -> bool:
 	if targets().size() == 1:
 		first_target().take_damage(calc_values().attack)
-	history.add_log('TEST TEST TEST')
-	
+		return true
+	return false
+
 func hint():
 	return 'Бьёт на %s здоровья' % str( calc_values().attack)
 

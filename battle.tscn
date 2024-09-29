@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0fmpdevoggfr"]
+[gd_scene load_steps=16 format=3 uid="uid://d0fmpdevoggfr"]
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_dk0uv"]
 [ext_resource type="PackedScene" uid="uid://5qbvpm0ullpb" path="res://unit/player.tscn" id="2_40q2x"]
 [ext_resource type="Resource" uid="uid://6uemgng5dpyv" path="res://combat/jobs/Rogue.tres" id="3_thwxi"]
 [ext_resource type="PackedScene" uid="uid://kscdultu6hj2" path="res://game_actions.tscn" id="7_ke1wm"]
+[ext_resource type="PackedScene" uid="uid://dyausp0rkbrd0" path="res://component/History/HistoryComponent.tscn" id="8_e02kc"]
 [ext_resource type="PackedScene" uid="uid://si7taig2uamb" path="res://unit/Actions.tscn" id="8_yh15h"]
 [ext_resource type="PackedScene" uid="uid://c4ijgivqc8cxa" path="res://history/History.tscn" id="9_imp7n"]
 [ext_resource type="PackedScene" uid="uid://cswloi0tus5fp" path="res://inventory/inventory.tscn" id="10_0xr0n"]
@@ -46,9 +47,9 @@ unit_name = "Пчела"
 
 [node name="History" parent="." instance=ExtResource("9_imp7n")]
 offset_left = 768.0
-offset_top = 56.0
-offset_right = 1128.0
-offset_bottom = 264.0
+offset_top = 72.0
+offset_right = 1112.0
+offset_bottom = 280.0
 
 [node name="Inventory" parent="." instance=ExtResource("10_0xr0n")]
 anchors_preset = 3
@@ -65,17 +66,21 @@ grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
+[node name="HistoryComponent" parent="." instance=ExtResource("8_e02kc")]
+unique_name_in_owner = true
+
 [node name="TurnComponent" parent="." instance=ExtResource("12_bigft")]
 
 [node name="HealSkill" parent="." instance=ExtResource("10_gtoxt")]
+aspects = Array[PackedScene]([])
 
 [node name="PowerAttack" parent="." instance=ExtResource("12_51hgo")]
 
 [node name="Menu" parent="." instance=ExtResource("13_kltf8")]
-offset_left = 608.0
-offset_top = 616.0
-offset_right = 1152.0
-offset_bottom = 647.0
+offset_left = 912.0
+offset_top = 8.0
+offset_right = 1115.0
+offset_bottom = 39.0
 
 [node name="ActionsPanel" type="VBoxContainer" parent="."]
 offset_left = 79.0

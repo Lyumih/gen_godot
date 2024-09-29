@@ -39,7 +39,7 @@ func take_damage(amount):
 ## Выведение текста в панель информации по герою
 func info_text():
 	$HelathBar.value = health
-	var info = "❤️%s\n⚕️%s 💪%s" % [health, STATS.heal, STATS.damage]
+	var info = "❤️%s\n⚕️%s 💪%s 👟%s" % [health, STATS.heal, STATS.damage, STATS.speed]
 	$InfoPanel/Info.text = info
 	
 ## Выведение текста в панель информации по умениям героя

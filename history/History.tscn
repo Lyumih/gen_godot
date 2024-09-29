@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" path="res://history/History.gd" id="1_3unhh"]
 
-[node name="History" type="RichTextLabel"]
+[node name="History" type="RichTextLabel" groups=["history"]]
 offset_right = 256.0
 offset_bottom = 312.0
 text = "История"
 script = ExtResource("1_3unhh")
-messages = Array[String](["Начало игры"])

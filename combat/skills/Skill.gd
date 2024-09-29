@@ -6,19 +6,29 @@ class_name Skill
 @export var level: LevelComponent
 @export var aspects: Array[PackedScene]
 
-var history = HistoryComponent.new()
+var history_component: HistoryComponent = HistoryComponent.new()
 
-func test():
+func _ready() -> void:
+	add_child(history_component)
+
+func test() -> bool:
 	print("It's just skill test in SkillStats.gd file")
+	return true
 
 ## Жизненный цикл использования умения. Нужно, чтобы можно переопределять в умениях только use_custom(), оставив жизненный цикл без изменений
-func use():
-	use_logic()
-	level.upgrade_chance()
+func use() -> bool:
+	var result = use_logic()
+	if result:
+		level.upgrade_chance()
+	return result
+
+func history():
+	return history_component
 	
 ## Использование умения. Пепеопределяется в самом умении.
-func use_logic():
+func use_logic() -> bool:
 	print('Skill use_logic() not implemented')
+	return false
 	
 ## Активные цели (таргеты) на данный момент
 func targets():
@@ -31,7 +41,7 @@ func source():
 ## Первая цель из списка целей
 func first_target():
 	if targets().size() > 0:
-		return targets()[0].get_parent()
+		return targets()[0].get_parent() as Player
 
 ## Подсказка с вычисленными значениями
 func hint() -> String:

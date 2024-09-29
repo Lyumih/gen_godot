@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://7hcroct5kfa1"]
+
+[ext_resource type="Script" path="res://combat/skills/heal/heal_skill.gd" id="1_yulm0"]
+[ext_resource type="Resource" uid="uid://bbpwyphovjyt8" path="res://combat/skills/heal/Heal.tres" id="2_t3cgh"]
+[ext_resource type="Script" path="res://component/LevelComponent.gd" id="3_3txhw"]
+
+[node name="HealSkill" type="Node2D" node_paths=PackedStringArray("level")]
+script = ExtResource("1_yulm0")
+stats = ExtResource("2_t3cgh")
+level = NodePath("LevelComponent")
+aspects = null
+
+[node name="LevelComponent" type="Node2D" parent="."]
+script = ExtResource("3_3txhw")

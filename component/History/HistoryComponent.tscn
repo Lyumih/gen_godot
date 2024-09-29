@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyausp0rkbrd0"]
+
+[ext_resource type="Script" path="res://component/History/HistoryComponent.gd" id="1_2al1o"]
+
+[node name="HistoryComponent" type="Node2D"]
+script = ExtResource("1_2al1o")

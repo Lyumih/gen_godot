@@ -1,9 +1,14 @@
 extends RichTextLabel
+class_name History
 
-@export var messages: Array[String] = []
+var messages: Array[String] = []
 	
-func add_log(message: String):
-	messages.push_front(message)
+func add_log(message: String, options):
+	var prefix = ''
+	#print(options)
+	#if options.warn: 
+		#prefix = '⚠️'
+	messages.push_front(prefix + message)
 	print_log()
 
 func print_log():
