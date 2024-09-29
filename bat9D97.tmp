@@ -24,7 +24,7 @@ offset_right = 720.0
 offset_bottom = 432.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Player" parent="UnitsContainer" node_paths=PackedStringArray("SKILLS") groups=["players"] instance=ExtResource("2_40q2x")]
+[node name="Player" parent="UnitsContainer" node_paths=PackedStringArray("SKILLS") groups=["active", "players"] instance=ExtResource("2_40q2x")]
 position = Vector2(120, 88)
 STATS = ExtResource("3_thwxi")
 SKILLS = [NodePath("../../HealSkill"), NodePath("../../PowerAttack")]
@@ -40,10 +40,9 @@ position = Vector2(448, 88)
 STATS = ExtResource("13_g8xhf")
 unit_name = "Краб"
 
-[node name="Enemy2" parent="UnitsContainer" node_paths=PackedStringArray("SKILLS") groups=["enemies"] instance=ExtResource("2_40q2x")]
+[node name="Enemy2" parent="UnitsContainer" groups=["enemies"] instance=ExtResource("2_40q2x")]
 position = Vector2(448, 322)
 STATS = ExtResource("14_5plux")
-SKILLS = [NodePath("../../HealSkill")]
 unit_name = "Пчела"
 
 [node name="History" parent="." instance=ExtResource("9_imp7n")]

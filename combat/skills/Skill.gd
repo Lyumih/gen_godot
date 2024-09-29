@@ -20,10 +20,27 @@ func use() -> bool:
 	var result = use_logic()
 	if result:
 		level.upgrade_chance()
+		history().add_log(log_use_success())
+	else:
+		history().add_log(log_use_failure())
 	return result
 
+## Быстрое обращение к компоненту истории
 func history():
 	return history_component
+	
+## Логирование успешного использования умения
+func log_use_success() -> String:
+	if first_target() and source():
+		return " %s %s 🎯%s умением 🪄%s:" % [ source().unit_name, hint(), first_target().unit_name, stats.skill_name]
+	return 'ERROR'
+	
+## Логирование успешного использования умения
+func log_use_failure() -> String:
+	if source():
+		return "%s: Не удалось использовать умение 🪄%s" % [source().unit_name, stats.skill_name]
+	return "ERROR"
+
 	
 ## Использование умения. Пепеопределяется в самом умении.
 func use_logic() -> bool:
@@ -36,7 +53,7 @@ func targets():
 
 ## Источник умения
 func source():
-	return get_tree().get_first_node_in_group('actives') as Player
+	return get_tree().get_first_node_in_group('active') as Player
 	
 ## Первая цель из списка целей
 func first_target():

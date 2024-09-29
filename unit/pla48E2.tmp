@@ -23,6 +23,7 @@ script = ExtResource("1_lplo4")
 STATS = ExtResource("2_sik56")
 speed_component = NodePath("SpeedComponent")
 active_component = NodePath("ActiveComponent")
+unit_name = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_nn421")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://component/SpeedComponent.gd" id="1_l2n8v"]
 
-[node name="SpeedComponent" type="Node2D" groups=["speeds"]]
+[node name="SpeedComponent" type="Node2D"]
 script = ExtResource("1_l2n8v")
 
 [node name="SpeedHint" type="Label" parent="."]

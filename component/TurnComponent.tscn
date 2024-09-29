@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsbg3vlkvgee"]
+[gd_scene load_steps=3 format=3 uid="uid://dsbg3vlkvgee"]
 
 [ext_resource type="Script" path="res://component/TurnComponent.gd" id="1_5ev1m"]
+[ext_resource type="PackedScene" uid="uid://dyausp0rkbrd0" path="res://component/History/HistoryComponent.tscn" id="2_ec8u3"]
 
 [node name="TurnComponent" type="Node2D"]
 script = ExtResource("1_5ev1m")
+
+[node name="HistoryComponent" parent="." instance=ExtResource("2_ec8u3")]

@@ -4,9 +4,7 @@ class_name HealSkill
 func use_logic() -> bool:
 	if targets().size() == 1:
 		first_target().take_damage(-calc_values().heal)
-		history().add_log("🪄%s: %s %s %s" % [stats.skill_name, source().unit_name, hint(), first_target().unit_name])
 		return true
-	history().add_log("Неправильное количество целей", {"warn": false})
 	return false
 	
 func hint():
@@ -14,7 +12,9 @@ func hint():
 	return 'Исцеляет на %s 💖' % str(heal)
 	
 func calc_values():
-	var heal_all_source = stats.heal + source().STATS.heal
+	var heal_all_source = stats.heal
+	if source():
+		heal_all_source += source().STATS.heal
 	return {
 		"heal": floor(heal_all_source * level.level_multiplier())
 	}

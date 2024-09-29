@@ -12,6 +12,7 @@ signal init_skills(skills)
 @export var SKILLS: Array[Skill]
 
 @export var speed_component: SpeedComponent
+@export var active_component: ActiveComponent
 
 var health: int = 100
 var damage: int = 3
@@ -27,6 +28,9 @@ func _ready():
 	$HelathBar.max_value = health
 	info_text()
 	info_skill_text()
+	
+func set_active(active: bool):
+	active_component.set_active(active)
 
 func take_damage(amount): 
 	var old_health = health
@@ -50,13 +54,3 @@ func info_skill_text():
 func _on_actions_attacked():
 	prints("DAMAGE", damage)
 	take_damage(damage)
-
-func skill_heal(skill):
-	prints("Heal", skill.heal)
-	take_damage(- (STATS.heal + skill.heal))
-
-func _on_actions_skill_activated(skill):
-	prints('player _on_actions_skill_activated', skill.skill_name, skill)
-	match skill.skill_name:
-		'PowerAttack': take_damage(skill.damage * 2)
-		'Heal': skill_heal(skill)

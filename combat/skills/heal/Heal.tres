@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_dickl")
-skill_name = "Heal"
+skill_name = "Исцеление"
 description = "Исцеляет цель на Х + (1% * lvl) + исцеление здоровья"
 icon = ExtResource("1_gpn7y")
 tags = Array[String]([])

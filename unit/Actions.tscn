@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://si7taig2uamb"]
+[gd_scene load_steps=4 format=3 uid="uid://si7taig2uamb"]
 
 [ext_resource type="Script" path="res://unit/Actions.gd" id="1_b2qn3"]
 [ext_resource type="Texture2D" uid="uid://w4bmn5cs0ejm" path="res://assets/game-icons/skills/gladius.svg" id="2_rtsqn"]
+[ext_resource type="PackedScene" uid="uid://dsbg3vlkvgee" path="res://component/TurnComponent.tscn" id="3_cqn3j"]
 
 [node name="Actions" type="HBoxContainer"]
 offset_right = 72.0
@@ -34,6 +35,8 @@ layout_mode = 2
 [node name="Info" type="Label" parent="InfoContainer"]
 layout_mode = 2
 text = "Описание умения"
+
+[node name="TurnComponent" parent="." instance=ExtResource("3_cqn3j")]
 
 [connection signal="button_down" from="HBoxContainer/Attack" to="." method="_on_button_button_down"]
 [connection signal="mouse_entered" from="HBoxContainer/Attack" to="." method="_on_attack_mouse_entered"]

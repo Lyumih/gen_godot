@@ -5,17 +5,16 @@ signal attacked
 ## Использование умения N
 signal skill_activated(value)
 
-@export var count_skills: Array[Skill] = []
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	EventBus.next_turn.connect(next_turn_actions)
 	update_skills_panel()
 		
 func update_skills_panel():
-	print("SKILL _ready" + str(count_skills))
 	for child in $SkillContainer.get_children():
 		child.queue_free()
-	var player = get_tree().get_first_node_in_group('actives') as Player 
+	var player = get_tree().get_first_node_in_group('active') as Player 
+	print("\nSKILL _ready", player, ' SIZE:', get_tree().get_node_count_in_group('active'), get_tree().get_nodes_in_group('active'))
 	if player == null:
 		return
 	$UnitName.text = player.unit_name
@@ -41,16 +40,12 @@ func clickSkill(skill):
 	update_skills_panel()
 
 func _on_button_button_down():
+	$TurnComponent.next_turn()
 	attacked.emit()
 
 ## Использование умения
 func _on_skill_button_down():
 	#skill_activated.emit(skills)
-	pass
-
-
-func _on_player_init_skills(skills):
-	count_skills = skills
 	pass
 
 
@@ -61,3 +56,7 @@ func _on_attack_mouse_entered():
 
 func _on_attack_mouse_exited():
 	$InfoContainer.hide()
+
+func next_turn_actions():
+	update_skills_panel()
+	print('NEXT TURN next_turn_actions')
