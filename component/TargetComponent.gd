@@ -20,7 +20,7 @@ func update():
 	else:
 		$'.'.remove_from_group(TARGETS_GROUPS)
 		collisionObject2D.skew = 0
-	$Label.text = 'Таргет: ' + str(isTarget)
+	$TargetHint.visible = isTarget
 
 ## Коннект переключения мыши к компоненту
 func _ready():

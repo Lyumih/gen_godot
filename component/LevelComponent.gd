@@ -49,5 +49,10 @@ func chance_calculate():
 func chance_update():
 	chance = chance_calculate()
 
+## Логгер для дебага
 func print_logger():
 	prints({"level": level, "chance": chance}, logger )
+	
+## Мультиплеер уровня
+func level_multiplier():
+	return 1 + level * 0.01

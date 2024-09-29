@@ -9,6 +9,7 @@ class_name StartingStats
 @export var max_health: int
 @export var max_mana: int
 @export var strength: int
+@export var damage: int
 @export var defence: int
 @export var speed: int
 @export var heal: int

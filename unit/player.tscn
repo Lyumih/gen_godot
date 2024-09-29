@@ -38,11 +38,12 @@ texture = ExtResource("4_6e24c")
 shape = SubResource("RectangleShape2D_pfscg")
 
 [node name="TargetComponent" parent="." node_paths=PackedStringArray("collisionObject2D", "sprite2D") instance=ExtResource("3_ramnd")]
-position = Vector2(-41, -11)
+position = Vector2(-41, 48)
 collisionObject2D = NodePath("..")
 sprite2D = NodePath("../Sprite2D")
 
 [node name="SpeedComponent" parent="." instance=ExtResource("5_ahe1d")]
+position = Vector2(-14, 48)
 
 [node name="ActiveComponent" parent="." instance=ExtResource("6_j0jhr")]
 
