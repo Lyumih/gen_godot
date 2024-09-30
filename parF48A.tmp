@@ -29,8 +29,8 @@ size_flags_horizontal = 4
 layout_mode = 0
 offset_left = 48.0
 offset_top = 64.0
-offset_right = 247.0
-offset_bottom = 640.0
+offset_right = 992.0
+offset_bottom = 472.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -57,62 +57,62 @@ layout_mode = 0
 offset_left = 296.0
 offset_top = 64.0
 offset_right = 1144.0
-offset_bottom = 640.0
+offset_bottom = 496.0
 current_tab = 2
 
-[node name="Оружие" type="TabBar" parent="TabContainer"]
+[node name="Weapon" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Button" type="Button" parent="TabContainer/Оружие"]
+[node name="Button" type="Button" parent="TabContainer/Weapon"]
 visible = false
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Надеть меч"
 
-[node name="Умения" type="TabBar" parent="TabContainer"]
+[node name="Skill" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Умения"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Skill"]
 layout_mode = 2
 offset_right = 648.0
 offset_bottom = 377.0
 
-[node name="SkillsContainer" type="VBoxContainer" parent="TabContainer/Умения/ScrollContainer"]
+[node name="SkillsContainer" type="VBoxContainer" parent="TabContainer/Skill/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Развитие" type="TabBar" parent="TabContainer"]
+[node name="UnitLevel" type="TabBar" parent="TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="PlayerUpgradesLabel" type="Label" parent="TabContainer/Развитие"]
+[node name="PlayerUpgradesLabel" type="Label" parent="TabContainer/UnitLevel"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 160.0
-offset_bottom = 545.0
+offset_bottom = 401.0
 text = "Уровень: 5. Улучшений: 12
 хп +5
 сила +10"
 autowrap_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Развитие"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/UnitLevel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 240.0
-offset_top = 1.0
+offset_top = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TableUpgrades" type="GridContainer" parent="TabContainer/Развитие/ScrollContainer"]
+[node name="TableUpgrades" type="GridContainer" parent="TabContainer/UnitLevel/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 20

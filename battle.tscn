@@ -16,10 +16,17 @@
 [ext_resource type="PackedScene" uid="uid://1u74d5d8nucc" path="res://menu/menu.tscn" id="13_kltf8"]
 [ext_resource type="Resource" uid="uid://dk6mispte8ax" path="res://combat/bot/Bee.tres" id="14_5plux"]
 
-[node name="Battle" type="Node2D"]
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_dk0uv")
 
 [node name="UnitsContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 48.0
 offset_top = 64.0
 offset_right = 568.0
@@ -68,12 +75,14 @@ SKILLS = [NodePath("../../../../HealSkill")]
 unit_name = "Пчела"
 
 [node name="History" parent="." instance=ExtResource("9_imp7n")]
+layout_mode = 0
 offset_left = 768.0
 offset_top = 72.0
 offset_right = 1112.0
 offset_bottom = 280.0
 
 [node name="Inventory" parent="." instance=ExtResource("10_0xr0n")]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -98,15 +107,17 @@ unique_name_in_owner = true
 [node name="PowerAttack" parent="." instance=ExtResource("12_51hgo")]
 
 [node name="Menu" parent="." instance=ExtResource("13_kltf8")]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 344.0
-offset_right = 889.0
+offset_left = -137.0
+offset_right = 137.0
 grow_horizontal = 2
 size_flags_horizontal = 8
 
 [node name="ActionsPanel" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 72.0
 offset_top = 408.0
 offset_right = 832.0

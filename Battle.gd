@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 ## Поиск нового врага
 func _on_game_actions_search_enemy():

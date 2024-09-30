@@ -10,13 +10,17 @@ signal health_depleted
 
 @export var speed_component: SpeedComponent
 @export var active_component: ActiveComponent
+@export var level_component: LevelComponent
 
 var health: int = 100
 var damage: int = 3
 @export var unit_name:String = 'Юнит'
 
+## Переменная для хранения улучшения характеристик самого персонажа. Массив {index: upgrade_id}
+var upgrades = {}
+
 func _ready():
-	%InfoPanel/Name.text = unit_name
+	%InfoPanel/Name.text = "%s. Ур. %s" % [unit_name, level_component.level]
 	speed_component.max_speed = STATS.speed
 	speed_component.speed = STATS.speed
 	%Sprite2D.texture = STATS.texture
