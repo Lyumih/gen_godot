@@ -19,6 +19,7 @@ func update():
 	else:
 		$'.'.remove_from_group(TARGETS_GROUPS)
 	$TargetHint.visible = isTarget
+	EventBus.target_changed.emit()
 
 ## Коннект переключения мыши к компоненту
 func _ready():

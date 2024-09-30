@@ -98,6 +98,8 @@ layout_mode = 2
 
 [node name="TargetActions" parent="ActionsPanel" instance=ExtResource("8_yh15h")]
 layout_mode = 2
+isActive = false
+disabled = true
 
 [node name="GameActions" parent="ActionsPanel" instance=ExtResource("7_ke1wm")]
 layout_mode = 2

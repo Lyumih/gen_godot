@@ -5,16 +5,27 @@ signal attacked
 ## Использование умения N
 signal skill_activated(value)
 
+@export var isActive := true
+@export var disabled := false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.next_turn.connect(next_turn_actions)
+	EventBus.target_changed.connect(next_turn_actions)
+	print('TARGET CHANGED')
 	update_skills_panel()
+	%Attack.disabled = disabled
 		
 func update_skills_panel():
 	for child in $SkillContainer.get_children():
 		child.queue_free()
-	var player = get_tree().get_first_node_in_group('active') as Player 
-	print("\nSKILL _ready", player, ' SIZE:', get_tree().get_node_count_in_group('active'), get_tree().get_nodes_in_group('active'))
+	var player
+	if isActive:
+		player = get_tree().get_first_node_in_group('active') as Player 
+		print("\nSKILL _ready", player, ' SIZE:', get_tree().get_node_count_in_group('active'), get_tree().get_nodes_in_group('active'))
+	if not isActive and get_tree().get_first_node_in_group('targets'):
+		player = get_tree().get_first_node_in_group('targets').owner as Player
+		print("\nSKILL _ready", player, ' SIZE:', get_tree().get_node_count_in_group('targets'), get_tree().get_nodes_in_group('targets'))
 	if player == null:
 		return
 	$UnitName.text = player.unit_name
@@ -26,13 +37,15 @@ func update_skills_panel():
 		button_skill.icon = skill.stats.icon
 		button_skill.add_theme_constant_override('icon_max_width', 64)
 		button_skill.pressed.connect(self.clickSkill.bind(skill))
+		button_skill.disabled = disabled
 		print("SKILL" + str(skill))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#update_skills_panel()
 	var units = get_tree().get_nodes_in_group('targets')
-	$HBoxContainer/Attack.disabled = units.size() == 0
+	if not disabled:
+		%Attack.disabled = units.size() == 0
 
 func clickSkill(skill):
 	print('worked skill_activated', skill)

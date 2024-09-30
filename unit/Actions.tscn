@@ -18,11 +18,13 @@ clip_contents = true
 layout_mode = 2
 
 [node name="Attack" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_stretch_ratio = 2.06
 tooltip_text = "Атаковать"
 theme_override_constants/icon_max_width = 64
+disabled = true
 icon = ExtResource("2_rtsqn")
 
 [node name="SkillContainer" type="HBoxContainer" parent="."]
