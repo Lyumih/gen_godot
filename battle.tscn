@@ -19,31 +19,49 @@
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_dk0uv")
 
-[node name="UnitsContainer" type="BoxContainer" parent="."]
-offset_right = 720.0
-offset_bottom = 432.0
-metadata/_edit_use_anchors_ = true
+[node name="UnitsContainer" type="HBoxContainer" parent="."]
+offset_left = 40.0
+offset_top = 64.0
+offset_right = 744.0
+offset_bottom = 400.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 72
+alignment = 1
 
-[node name="Player" parent="UnitsContainer" node_paths=PackedStringArray("SKILLS") groups=["players"] instance=ExtResource("2_40q2x")]
-position = Vector2(120, 88)
+[node name="PlayersContainer" type="VBoxContainer" parent="UnitsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="Player" parent="UnitsContainer/PlayersContainer" node_paths=PackedStringArray("SKILLS") groups=["players"] instance=ExtResource("2_40q2x")]
+layout_mode = 2
 STATS = ExtResource("3_thwxi")
-SKILLS = [NodePath("../../HealSkill"), NodePath("../../PowerAttack")]
+SKILLS = [NodePath("../../../HealSkill"), NodePath("../../../PowerAttack")]
 unit_name = "Рога"
 
-[node name="Player2" parent="UnitsContainer" node_paths=PackedStringArray("SKILLS") groups=["players"] instance=ExtResource("2_40q2x")]
-position = Vector2(120, 321)
-SKILLS = [NodePath("../../PowerAttack")]
+[node name="Player2" parent="UnitsContainer/PlayersContainer" node_paths=PackedStringArray("SKILLS") groups=["players"] instance=ExtResource("2_40q2x")]
+layout_mode = 2
+SKILLS = [NodePath("../../../PowerAttack")]
 unit_name = "Файтер"
 
-[node name="Enemy1" parent="UnitsContainer" groups=["enemies"] instance=ExtResource("2_40q2x")]
-position = Vector2(448, 88)
+[node name="ScrollContainer" type="ScrollContainer" parent="UnitsContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="EnemyContainer" type="VBoxContainer" parent="UnitsContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="Enemy1" parent="UnitsContainer/ScrollContainer/EnemyContainer" groups=["enemies"] instance=ExtResource("2_40q2x")]
+layout_mode = 2
 STATS = ExtResource("13_g8xhf")
 unit_name = "Краб"
 
-[node name="Enemy2" parent="UnitsContainer" node_paths=PackedStringArray("SKILLS") groups=["enemies"] instance=ExtResource("2_40q2x")]
-position = Vector2(448, 322)
+[node name="Enemy2" parent="UnitsContainer/ScrollContainer/EnemyContainer" node_paths=PackedStringArray("SKILLS") groups=["enemies"] instance=ExtResource("2_40q2x")]
+layout_mode = 2
 STATS = ExtResource("14_5plux")
-SKILLS = [NodePath("../../HealSkill")]
+SKILLS = [NodePath("../../../../HealSkill")]
 unit_name = "Пчела"
 
 [node name="History" parent="." instance=ExtResource("9_imp7n")]
@@ -77,10 +95,9 @@ unique_name_in_owner = true
 [node name="PowerAttack" parent="." instance=ExtResource("12_51hgo")]
 
 [node name="Menu" parent="." instance=ExtResource("13_kltf8")]
-offset_left = 912.0
-offset_top = 8.0
-offset_right = 1115.0
-offset_bottom = 39.0
+offset_left = 608.0
+offset_right = 1153.0
+size_flags_horizontal = 8
 
 [node name="ActionsPanel" type="VBoxContainer" parent="."]
 offset_left = 72.0
@@ -104,8 +121,8 @@ disabled = true
 [node name="GameActions" parent="ActionsPanel" instance=ExtResource("7_ke1wm")]
 layout_mode = 2
 
-[connection signal="init_skills" from="UnitsContainer/Player" to="ActionsPanel/ActiveActions" method="_on_player_init_skills"]
-[connection signal="init_skills" from="UnitsContainer/Player2" to="ActionsPanel/ActiveActions" method="_on_player_init_skills"]
+[connection signal="init_skills" from="UnitsContainer/PlayersContainer/Player" to="ActionsPanel/ActiveActions" method="_on_player_init_skills"]
+[connection signal="init_skills" from="UnitsContainer/PlayersContainer/Player2" to="ActionsPanel/ActiveActions" method="_on_player_init_skills"]
 [connection signal="attacked" from="ActionsPanel/ActiveActions" to="." method="_on_unit_actions_attacked"]
 [connection signal="skill_activated" from="ActionsPanel/ActiveActions" to="." method="_on_unit_actions_skill_activated"]
 [connection signal="attacked" from="ActionsPanel/TargetActions" to="." method="_on_unit_actions_attacked"]

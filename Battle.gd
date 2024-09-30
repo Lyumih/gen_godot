@@ -4,10 +4,10 @@ extends Node2D
 func _on_game_actions_search_enemy():
 	var enemy = preload("res://unit/player.tscn").instantiate()
 	enemy.STATS = load("res://combat/bot/Mouse.tres")
+	enemy.add_to_group('enemies')
 	enemy.position = $UnitsContainer.position
 	%HistoryComponent.add_log('Поиск нового врага')
-	self.add_child(enemy)
-	#$Enemy.queue_free()
+	%EnemyContainer.add_child(enemy)
 
 ## Сбежать из битвы и полечиться
 func _on_game_actions_leave_battle():

@@ -23,14 +23,11 @@ func update():
 
 ## Коннект переключения мыши к компоненту
 func _ready():
-	if collisionObject2D:
-		collisionObject2D.input_event.connect(toggle_target.bind())
-		update()
+	update()
 
 ## По нажатию мышки переключить таргет - отлавливание сигнала
-func toggle_target(viewport: Node, event: InputEvent, shape_idx: int):
-	if event is InputEventMouseButton and event.pressed:
-		isTarget = !isTarget
+func toggle_target():
+	isTarget = !isTarget
 	
 ## Установить значение isTarget из метода групп. Можно сбросить все разом	
 func set_target(value: bool):

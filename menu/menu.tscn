@@ -8,6 +8,18 @@ offset_right = 544.0
 offset_bottom = 31.0
 script = ExtResource("1_6x8mk")
 
+[node name="Continue" type="Button" parent="."]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_xhent")
+text = "Продолжить"
+
+[node name="Save" type="Button" parent="."]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_xhent")
+text = "Сохранить"
+
 [node name="NewGame" type="Button" parent="."]
 visible = false
 layout_mode = 2
@@ -24,11 +36,10 @@ layout_mode = 2
 theme = ExtResource("2_xhent")
 text = "Умения"
 
-[node name="Continue" type="Button" parent="."]
-visible = false
+[node name="About" type="Button" parent="."]
 layout_mode = 2
 theme = ExtResource("2_xhent")
-text = "Продолжить"
+text = "Об игре"
 
 [node name="Exit" type="Button" parent="."]
 layout_mode = 2
@@ -37,4 +48,5 @@ text = "Выход"
 
 [connection signal="button_down" from="Battle" to="." method="_on_battle_button_down"]
 [connection signal="button_down" from="Skills" to="." method="_on_skills_button_down"]
+[connection signal="button_down" from="About" to="." method="_on_about_button_down"]
 [connection signal="button_down" from="Exit" to="." method="_on_exit_button_down"]

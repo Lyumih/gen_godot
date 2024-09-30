@@ -1,10 +1,9 @@
-extends CharacterBody2D
+extends PanelContainer
 
 class_name Player
 
 signal health_changed(old_value, new_value)
 signal health_depleted
-signal hit
 
 signal init_skills(skills)
 
@@ -20,12 +19,12 @@ var damage: int = 3
 
 func _ready():
 	init_skills.emit(SKILLS)
-	$InfoPanel/Name.text = unit_name
+	%InfoPanel/Name.text = unit_name
 	speed_component.max_speed = STATS.speed
 	speed_component.speed = STATS.speed
-	$Sprite2D.texture = STATS.texture
-	$HelathBar.value = health
-	$HelathBar.max_value = health
+	%Sprite2D.texture = STATS.texture
+	%HelathBar.value = health
+	%HelathBar.max_value = health
 	info_text()
 	info_skill_text()
 	
@@ -42,15 +41,20 @@ func take_damage(amount):
 		
 ## Выведение текста в панель информации по герою
 func info_text():
-	$HelathBar.value = health
-	var info = "❤️%s\n⚕️%s 💪%s 👟%s" % [health, STATS.heal, STATS.damage, STATS.speed]
-	$InfoPanel/Info.text = info
+	%HelathBar.value = health
+	var info = "❤️%s\n⚕️%s 💪%s" % [health, STATS.heal, STATS.damage]
+	%InfoPanel/Info.text = info
 	
 ## Выведение текста в панель информации по умениям героя
 func info_skill_text():
 	var info = 'Умений: ' + str(SKILLS.size())
-	$InfoPanel/SkillInfo.text = info
+	%InfoPanel/SkillInfo.text = info
 
 func _on_actions_attacked():
 	prints("DAMAGE", damage)
 	take_damage(damage)
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed('click'):
+		$TargetComponent.toggle_target()

@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyvgvp62m7ohb"]
+
+[ext_resource type="PackedScene" uid="uid://1u74d5d8nucc" path="res://menu/menu.tscn" id="1_yfnv3"]
+
+[node name="About" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Menu" parent="." instance=ExtResource("1_yfnv3")]
+offset_left = 304.0
+offset_top = 16.0
+offset_right = 848.0
+offset_bottom = 47.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 1088.0
+offset_bottom = 624.0
+bbcode_enabled = true
+text = "[center][b]Игра Gen[/b][/center]
+
+2D RPG игра с бесконечной системой улучшений \"Memento Mori\".
+Сражайтесь с врагами, находите оружие, открывайте умения и их улучшения и становитесь сильнее с каждым боем. 
+Но помните - враги тоже становятся сильнее с каждой смертью!
+
+
+[center][b]Система улучшений \"Memento Mori\"[/b][/center]
+[ul]
+[b] Уровни врагов и персонажей[/b], а также их предметов, умений и  улучшений прокачиваются с определённым шансом при разных условиях:
+[i] При смерти:[/i] враги и персонажи
+[i] При использовании:[/i] умения и оружие
+[i] При победе:[/i] улучшения для умений и оружия
+[/ul]
+
+[center][b]Дорожная карта[/b][/center]
+[ol]
+ Demo (сейчас). По 3 единицы контента (классы, враги, оружие,  умения и т.п.). Разработка механик игры.
+ Early Access. По 10 единиц контента. Разработка визуала. Страница в Steam.
+ Release. По 30 единиц контента. Локализация. Старт разработки 2 части игры с новой механикой.
+ DLC. По 100 единиц контента. Моддинг. Demo 2 части игры.
+[/ol]
+
+[center][b]Контакты[/b][/center]
+Telegram: [url]@mikhail_eco_coach[/url]
+[i]Буду рад вашей обратной связи! До встречи![/i]"
