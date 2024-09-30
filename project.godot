@@ -10,15 +10,17 @@ config_version=5
 
 [application]
 
-config/name="gen"
-run/main_scene="res://world.tscn"
+config/name="Gen Game"
+run/main_scene="res://party.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+run/name="gen"
 
 [autoload]
 
 GameState="*res://game_state.gd"
 EventBus="*res://EventBus.gd"
+Global="*res://global/global.gd"
 
 [editor]
 

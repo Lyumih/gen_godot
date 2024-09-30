@@ -1,23 +1,22 @@
 extends Node2D
 class_name TargetComponent
 
-@export var collisionObject2D: CollisionObject2D
-@export var sprite2D: Sprite2D
-
 ## isTarget - отвечает за то, в таргете сейчас объект или нет
 @export var isTarget := false:
 	set(new_value):
 		isTarget = new_value
 		update()
-		
-var TARGETS_GROUPS = 'targets'
+	
+## Имя группы таргета	
+var TARGETS_GROUPS = Global.GROUPS.TARGETS
 
 ## Логика обновления таргета
 func update():
+	print('update')
 	if isTarget:
-		$'.'.add_to_group(TARGETS_GROUPS)
+		owner.add_to_group(TARGETS_GROUPS)
 	else:
-		$'.'.remove_from_group(TARGETS_GROUPS)
+		owner.remove_from_group(TARGETS_GROUPS)
 	$TargetHint.visible = isTarget
 	EventBus.target_changed.emit()
 
@@ -27,6 +26,7 @@ func _ready():
 
 ## По нажатию мышки переключить таргет - отлавливание сигнала
 func toggle_target():
+	print('toggle_target')
 	isTarget = !isTarget
 	
 ## Установить значение isTarget из метода групп. Можно сбросить все разом	

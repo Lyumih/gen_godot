@@ -6,6 +6,7 @@
 [node name="Menu" type="HBoxContainer"]
 offset_right = 544.0
 offset_bottom = 31.0
+alignment = 1
 script = ExtResource("1_6x8mk")
 
 [node name="Continue" type="Button" parent="."]
@@ -13,6 +14,11 @@ visible = false
 layout_mode = 2
 theme = ExtResource("2_xhent")
 text = "Продолжить"
+
+[node name="Party" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("2_xhent")
+text = "Отряд"
 
 [node name="Save" type="Button" parent="."]
 visible = false
@@ -32,6 +38,7 @@ theme = ExtResource("2_xhent")
 text = "Бой"
 
 [node name="Skills" type="Button" parent="."]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_xhent")
 text = "Умения"
@@ -46,6 +53,7 @@ layout_mode = 2
 theme = ExtResource("2_xhent")
 text = "Выход"
 
+[connection signal="button_down" from="Party" to="." method="_on_party_button_down"]
 [connection signal="button_down" from="Battle" to="." method="_on_battle_button_down"]
 [connection signal="button_down" from="Skills" to="." method="_on_skills_button_down"]
 [connection signal="button_down" from="About" to="." method="_on_about_button_down"]

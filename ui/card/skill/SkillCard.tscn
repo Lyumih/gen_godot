@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c75pm5y7eh676"]
+
+[ext_resource type="Script" path="res://ui/card/skill/skill_card.gd" id="1_qm6fi"]
+[ext_resource type="PackedScene" uid="uid://7hcroct5kfa1" path="res://combat/skills/heal/HealSkill.tscn" id="2_eqmiy"]
+[ext_resource type="Texture2D" uid="uid://b3itk3ratmjc8" path="res://assets/game-icons/skills/healing.svg" id="3_64t87"]
+
+[node name="SkillCard" type="BoxContainer"]
+anchors_preset = -1
+anchor_right = 0.167
+anchor_bottom = 0.062
+offset_right = -1.38402
+offset_bottom = -0.176003
+script = ExtResource("1_qm6fi")
+
+[node name="Skill" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/icon_max_width = 32
+text = "Описание умения"
+icon = ExtResource("3_64t87")
+
+[node name="HealSkill" parent="." instance=ExtResource("2_eqmiy")]

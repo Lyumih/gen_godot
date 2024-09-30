@@ -5,8 +5,6 @@ class_name Player
 signal health_changed(old_value, new_value)
 signal health_depleted
 
-signal init_skills(skills)
-
 @export var STATS: StartingStats
 @export var SKILLS: Array[Skill]
 
@@ -15,10 +13,9 @@ signal init_skills(skills)
 
 var health: int = 100
 var damage: int = 3
-@export var unit_name:String = 'Аркадий2'
+@export var unit_name:String = 'Юнит'
 
 func _ready():
-	init_skills.emit(SKILLS)
 	%InfoPanel/Name.text = unit_name
 	speed_component.max_speed = STATS.speed
 	speed_component.speed = STATS.speed

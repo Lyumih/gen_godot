@@ -20,3 +20,7 @@ func _on_skills_button_down() -> void:
 ## Об игре
 func _on_about_button_down() -> void:
 	get_tree().change_scene_to_file("res://about.tscn")
+
+## Переход на страницу "Отряд"
+func _on_party_button_down() -> void:
+	get_tree().change_scene_to_file("res://party.tscn")

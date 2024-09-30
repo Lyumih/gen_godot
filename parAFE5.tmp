@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://couc2avgwecok"]
+
+[ext_resource type="PackedScene" uid="uid://1u74d5d8nucc" path="res://menu/menu.tscn" id="1_sbgxh"]
+[ext_resource type="Script" path="res://party.gd" id="1_snlwb"]
+[ext_resource type="PackedScene" uid="uid://5qbvpm0ullpb" path="res://unit/player.tscn" id="2_c00vy"]
+[ext_resource type="PackedScene" uid="uid://cwg88mn0pae6g" path="res://combat/skills/power_attack/PowerAttack.tscn" id="5_4e12d"]
+[ext_resource type="PackedScene" uid="uid://7hcroct5kfa1" path="res://combat/skills/heal/HealSkill.tscn" id="5_hplxw"]
+
+[node name="Party" type="Node2D"]
+script = ExtResource("1_snlwb")
+
+[node name="Menu" parent="." instance=ExtResource("1_sbgxh")]
+offset_left = 280.0
+offset_right = 824.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 48.0
+offset_top = 64.0
+offset_right = 992.0
+offset_bottom = 472.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Player" parent="HBoxContainer/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("SKILLS") instance=ExtResource("2_c00vy")]
+layout_mode = 2
+SKILLS = [NodePath("../../../../HealSkill"), NodePath("../../../../PowerAttack")]
+
+[node name="Player2" parent="HBoxContainer/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("SKILLS") instance=ExtResource("2_c00vy")]
+layout_mode = 2
+SKILLS = [NodePath("../../../../PowerAttack")]
+
+[node name="Player3" parent="HBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_c00vy")]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+offset_left = 296.0
+offset_top = 64.0
+offset_right = 941.0
+offset_bottom = 472.0
+current_tab = 1
+
+[node name="Weapon" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Button" type="Button" parent="TabContainer/Weapon"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Надеть меч"
+
+[node name="Skill" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Skill"]
+layout_mode = 0
+offset_right = 648.0
+offset_bottom = 377.0
+
+[node name="SkillsContainer" type="VBoxContainer" parent="TabContainer/Skill/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="UnitLevel" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Button" type="Button" parent="TabContainer/UnitLevel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Таблица прокачки"
+
+[node name="HealSkill" parent="." instance=ExtResource("5_hplxw")]
+
+[node name="PowerAttack" parent="." instance=ExtResource("5_4e12d")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5qbvpm0ullpb"]
+[gd_scene load_steps=11 format=3 uid="uid://5qbvpm0ullpb"]
 
 [ext_resource type="Script" path="res://unit/Player.gd" id="1_lplo4"]
 [ext_resource type="Shader" path="res://unit/outline.gdshader" id="2_i1p3e"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cvb88kyxcxrg7" path="res://component/SpeedComponent.tscn" id="5_ahe1d"]
 [ext_resource type="PackedScene" uid="uid://dljfuo2geo3mu" path="res://component/ActiveComponent.tscn" id="6_j0jhr"]
 [ext_resource type="PackedScene" uid="uid://dsbg3vlkvgee" path="res://component/TurnComponent.tscn" id="7_0twfp"]
+[ext_resource type="PackedScene" uid="uid://hjf3cil0m70l" path="res://component/LevelComponent.tscn" id="9_2xnlt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nn421"]
 shader = ExtResource("2_i1p3e")
@@ -65,9 +66,8 @@ fit_content = true
 layout_mode = 2
 text = "Умения:"
 
-[node name="TargetComponent" parent="." node_paths=PackedStringArray("sprite2D") instance=ExtResource("3_ramnd")]
+[node name="TargetComponent" parent="." instance=ExtResource("3_ramnd")]
 position = Vector2(56, 27)
-sprite2D = NodePath("../HBoxContainer/Sprite2D")
 
 [node name="SpeedComponent" parent="." instance=ExtResource("5_ahe1d")]
 position = Vector2(24, 112)
@@ -77,5 +77,7 @@ position = Vector2(8, 34)
 
 [node name="TurnComponent" parent="." instance=ExtResource("7_0twfp")]
 position = Vector2(116, 0)
+
+[node name="LevelComponent" parent="." instance=ExtResource("9_2xnlt")]
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
