@@ -1,4 +1,9 @@
-extends HBoxContainer
+extends VBoxContainer
+
+func _ready() -> void:
+	update_after_save()
+	Global.game_saved.connect(update_after_save)
+	%UserName.text = Global.user_name
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("menu"):
@@ -24,3 +29,20 @@ func _on_about_button_down() -> void:
 ## Переход на страницу "Отряд"
 func _on_party_button_down() -> void:
 	get_tree().change_scene_to_file("res://party.tscn")
+
+## Сохранение игры по кнопке
+func _on_save_button_down() -> void:
+	Global.save_game()
+	
+func update_after_save():
+	%Save_version.text = "v.%s" % [Global.saves]
+
+## Сохранение игры при обновлении поля "Имя"
+func _on_text_edit_text_changed() -> void:
+	print('TEXT CHANGED')
+	Global.user_name = %UserName.text
+	Global.save_game()
+
+
+func _on_continue_button_down() -> void:
+	Global.load_game()

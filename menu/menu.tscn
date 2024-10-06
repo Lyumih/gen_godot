@@ -3,58 +3,77 @@
 [ext_resource type="Script" path="res://menu/menu.gd" id="1_6x8mk"]
 [ext_resource type="Theme" uid="uid://bkxava4kbcx2a" path="res://test_theme.tres" id="2_xhent"]
 
-[node name="Menu" type="HBoxContainer"]
-offset_right = 544.0
-offset_bottom = 31.0
-alignment = 1
+[node name="Menu" type="VBoxContainer"]
+offset_right = 685.0
+offset_bottom = 66.0
 script = ExtResource("1_6x8mk")
 
-[node name="Continue" type="Button" parent="."]
-visible = false
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme = ExtResource("2_xhent")
-text = "Продолжить"
+alignment = 2
 
-[node name="Party" type="Button" parent="."]
-layout_mode = 2
-theme = ExtResource("2_xhent")
-text = "Отряд"
-
-[node name="Save" type="Button" parent="."]
-visible = false
+[node name="Save" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_xhent")
 text = "Сохранить"
 
-[node name="NewGame" type="Button" parent="."]
+[node name="Continue" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_xhent")
+text = "Продолжить"
+
+[node name="NewGame" type="Button" parent="HBoxContainer"]
 visible = false
 layout_mode = 2
 theme = ExtResource("2_xhent")
 text = "Новая игра"
 
-[node name="Battle" type="Button" parent="."]
+[node name="Exit" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_xhent")
+text = "Выход"
+
+[node name="UserName" type="TextEdit" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+placeholder_text = "Пользователь"
+
+[node name="Save_version" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "v.1"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="Party" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_xhent")
+text = "Отряд"
+
+[node name="Battle" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_xhent")
 text = "Бой"
 
-[node name="Skills" type="Button" parent="."]
+[node name="Skills" type="Button" parent="HBoxContainer2"]
 visible = false
 layout_mode = 2
 theme = ExtResource("2_xhent")
 text = "Умения"
 
-[node name="About" type="Button" parent="."]
+[node name="About" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_xhent")
 text = "Об игре"
 
-[node name="Exit" type="Button" parent="."]
-layout_mode = 2
-theme = ExtResource("2_xhent")
-text = "Выход"
-
-[connection signal="button_down" from="Party" to="." method="_on_party_button_down"]
-[connection signal="button_down" from="Battle" to="." method="_on_battle_button_down"]
-[connection signal="button_down" from="Skills" to="." method="_on_skills_button_down"]
-[connection signal="button_down" from="About" to="." method="_on_about_button_down"]
-[connection signal="button_down" from="Exit" to="." method="_on_exit_button_down"]
+[connection signal="button_down" from="HBoxContainer/Save" to="." method="_on_save_button_down"]
+[connection signal="button_down" from="HBoxContainer/Continue" to="." method="_on_continue_button_down"]
+[connection signal="button_down" from="HBoxContainer/Exit" to="." method="_on_exit_button_down"]
+[connection signal="text_changed" from="HBoxContainer/UserName" to="." method="_on_text_edit_text_changed"]
+[connection signal="button_down" from="HBoxContainer2/Party" to="." method="_on_party_button_down"]
+[connection signal="button_down" from="HBoxContainer2/Battle" to="." method="_on_battle_button_down"]
+[connection signal="button_down" from="HBoxContainer2/Skills" to="." method="_on_skills_button_down"]
+[connection signal="button_down" from="HBoxContainer2/About" to="." method="_on_about_button_down"]
