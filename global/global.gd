@@ -9,41 +9,43 @@ signal game_loaded
 var config: ConfigFile = ConfigFile.new();
 ## Путь к файлу для сохраненя игры.
 var path_to_save_file := "user://save-gen-godot.cfg"
-## Секция для сохранения игры
-var section_name := "game"
 
-## имя пользователя
-var user_name: String
 ## количество сохранение
-var saves = 0
+@onready var total_save_count = 0
 
 ## Константа с именами групп
-const GROUPS = {
+const GROUPS := {
 	"TARGETS": "targets", 
 	"ACTIVE": "active"
 }
 
-## Загружаем игру при старте
-func _ready():
-	print('Global _ready')
-	var isLoaded = config.load(path_to_save_file)
-	print("Loaded: " + error_string(isLoaded))
-	load_game()
+func _ready() -> void:
+	init_load_game()
+	
+## начальная загрузка игры
+func init_load_game():
+	var loaded_error = config.load(path_to_save_file)
+	if loaded_error: 
+		printerr(loaded_error, error_string(loaded_error))
+	total_save_count = config.get_value("HACKER", "total_save_count", 0)
 
 ## Сохранение всего состояния игры
 func save_game():
-	saves += 1
-	config.set_value(section_name, "user_name", user_name)
-	config.set_value(section_name, "saves", saves)
+	total_save_count += 1
+	config.set_value("HACKER", "total_save_count", total_save_count)
 
 	config.save(path_to_save_file)
 	game_saved.emit()
-	print('Save game', config.encode_to_text())
+	#print('Save game', config.encode_to_text())
 
 ## Загрузка всего состояния игры
 func load_game():
-	print("LOAD GAME before", config.encode_to_text())
-	user_name = config.get_value(section_name, "user_name", "Бобик")
-	saves = config.get_value(section_name, "saves", saves)
+	total_save_count = config.get_value("HACKER", "total_save_count", 0)
 	game_loaded.emit()
-	print('LOAD GAME after',  config.encode_to_text(), config)
+
+## Полностью очищает сохранение игры
+func clear_save():
+	config.clear()
+	total_save_count = 0
+	save_game()
+	print_debug("DELETED", config.encode_to_text())

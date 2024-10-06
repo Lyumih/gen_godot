@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://5qbvpm0ullpb"]
+
+[ext_resource type="Script" path="res://unit/Player.gd" id="1_lplo4"]
+[ext_resource type="Shader" path="res://unit/outline.gdshader" id="2_i1p3e"]
+[ext_resource type="Resource" uid="uid://c7wdhv6pb16j5" path="res://combat/jobs/Fighter.tres" id="2_sik56"]
+[ext_resource type="PackedScene" uid="uid://ceqiexjdyh4tl" path="res://component/TargetComponent.tscn" id="3_ramnd"]
+[ext_resource type="Texture2D" uid="uid://biarprldvpwnj" path="res://assets/game-icons/units/barbute.svg" id="4_6e24c"]
+[ext_resource type="PackedScene" uid="uid://cvb88kyxcxrg7" path="res://component/SpeedComponent.tscn" id="5_ahe1d"]
+[ext_resource type="PackedScene" uid="uid://dljfuo2geo3mu" path="res://component/ActiveComponent.tscn" id="6_j0jhr"]
+[ext_resource type="PackedScene" uid="uid://dsbg3vlkvgee" path="res://component/TurnComponent.tscn" id="7_0twfp"]
+[ext_resource type="PackedScene" uid="uid://hjf3cil0m70l" path="res://component/LevelComponent.tscn" id="9_2xnlt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nn421"]
+shader = ExtResource("2_i1p3e")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[node name="Player" type="PanelContainer" node_paths=PackedStringArray("speed_component", "active_component", "level_component") groups=["speed", "units"]]
+anchors_preset = -1
+anchor_right = 0.118
+anchor_bottom = 0.21
+offset_right = 112.064
+offset_bottom = 55.92
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lplo4")
+STATS = ExtResource("2_sik56")
+speed_component = NodePath("SpeedComponent")
+active_component = NodePath("ActiveComponent")
+level_component = NodePath("LevelComponent")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_nn421")
+use_parent_material = true
+position = Vector2(46, 72)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_6e24c")
+
+[node name="HelathBar" type="ProgressBar" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+step = 1.0
+value = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoPanel" type="VBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBoxContainer/InfoPanel"]
+layout_mode = 2
+text = " Игрок"
+metadata/_edit_use_anchors_ = true
+
+[node name="Info" type="RichTextLabel" parent="HBoxContainer/InfoPanel"]
+layout_mode = 2
+text = "❤️100
+⚕2 💪10"
+fit_content = true
+
+[node name="SkillInfo" type="Label" parent="HBoxContainer/InfoPanel"]
+layout_mode = 2
+text = "Умения:"
+
+[node name="TargetComponent" parent="." instance=ExtResource("3_ramnd")]
+position = Vector2(56, 27)
+
+[node name="SpeedComponent" parent="." instance=ExtResource("5_ahe1d")]
+position = Vector2(24, 112)
+
+[node name="ActiveComponent" parent="." instance=ExtResource("6_j0jhr")]
+position = Vector2(8, 34)
+
+[node name="TurnComponent" parent="." instance=ExtResource("7_0twfp")]
+position = Vector2(116, 0)
+
+[node name="LevelComponent" parent="." instance=ExtResource("9_2xnlt")]
+level = 24
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

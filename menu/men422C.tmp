@@ -82,10 +82,8 @@ text = "Об игре"
 
 [node name="SaverUser" parent="." instance=ExtResource("3_vm6kw")]
 unique_name_in_owner = true
-section = "USER"
-data = {
-"user_name": "Без имени test"
-}
+SECTION_ENUM = "GAME"
+data = {}
 
 [connection signal="button_down" from="HBoxContainer/Save" to="." method="_on_save_button_down"]
 [connection signal="button_down" from="HBoxContainer/Continue" to="." method="_on_continue_button_down"]

@@ -8,12 +8,32 @@ var player: Player
 var upgrades = ["❤️2", "❤️10", "💪1", "💪4", "⚕2", "⚕6", "", "👟1"]
 var all_upgrades = []
 
+@onready var party_saver = %PartySaver
+
 func _ready() -> void:
+	load_party()
 	EventBus.target_changed.connect(change_target)
 	change_target()
 	%TableUpgrades.columns = table_width
 	init_all_upgrades()
 	init_unit_upgrades()
+	
+## Загрузка отряда из сохранения
+func load_party():
+	print_debug('load_party', party_saver.data, party_saver.data.units)
+	for unit in party_saver.data.units:
+		%HeroesContainer.add_child(Player.deserialize_scene(unit))
+		print_debug(unit)
+
+## Добавление нового героя в группу
+func _on_add_hero_button_down() -> void:
+	print_debug('add hero')
+	var scene = preload("res://unit/player.tscn")
+	var new_hero: Player = scene.instantiate()
+	new_hero.unit_name = str(randi())
+	party_saver.data.units.push_front(new_hero.serialize())
+	party_saver.save()
+	%HeroesContainer.add_child(new_hero)
 
 ## Наполнение таблицы случайными улучшениями.
 func init_all_upgrades():
@@ -67,7 +87,9 @@ func upgrade_player_cell_click(index):
 		return
 	if player.level_component.level > player.upgrades.size():
 		print(index, player, player.upgrades)
+		#player.all_upgrades = all_upgrades
 		player.upgrades[index] = all_upgrades[index]
+		party_saver.save()
 		update_player_label()
 		upgrade_cells()
 	
@@ -75,3 +97,5 @@ func upgrade_player_cell_click(index):
 func update_player_label():
 	if player:
 		%PlayerUpgradesLabel.text = "Улучшений: %s. Уровень: %s\n%s" % [player.upgrades.size(), player.level_component.level, "\n".join(player.upgrades.values())]
+
+	

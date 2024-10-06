@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://camog3a1d6fhr"]
+
+[ext_resource type="Script" path="res://component/saver/saver_component.gd" id="1_ld6oj"]
+
+[node name="SaverComponent" type="Node2D"]
+script = ExtResource("1_ld6oj")

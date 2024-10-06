@@ -26,36 +26,35 @@ offset_right = 137.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 
-[node name="HBoxContainer" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 64.0
-offset_right = 269.0
+offset_right = 247.0
 offset_bottom = 640.0
-
-[node name="AddHero" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-text = "+"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
 [node name="HeroesContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Player" parent="HBoxContainer/ScrollContainer/HeroesContainer" instance=ExtResource("2_c00vy")]
-visible = false
+[node name="AddHero" type="Button" parent="HBoxContainer/ScrollContainer/HeroesContainer"]
 layout_mode = 2
+text = "+"
 
-[node name="Player2" parent="HBoxContainer/ScrollContainer/HeroesContainer" instance=ExtResource("2_c00vy")]
-visible = false
+[node name="Player" parent="HBoxContainer/ScrollContainer/HeroesContainer" node_paths=PackedStringArray("SKILLS") instance=ExtResource("2_c00vy")]
 layout_mode = 2
+SKILLS = [NodePath("../../../../HealSkill"), NodePath("../../../../PowerAttack")]
+
+[node name="Player2" parent="HBoxContainer/ScrollContainer/HeroesContainer" node_paths=PackedStringArray("SKILLS") instance=ExtResource("2_c00vy")]
+layout_mode = 2
+SKILLS = [NodePath("../../../../PowerAttack")]
 
 [node name="Player3" parent="HBoxContainer/ScrollContainer/HeroesContainer" instance=ExtResource("2_c00vy")]
-visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -132,20 +131,7 @@ columns = 20
 unique_name_in_owner = true
 section = "PARTY"
 data = {
-"units": []
+"units": PackedStringArray("12", "23", "34")
 }
-NEED_PRINT = true
 
-[node name="CheckBox" type="CheckBox" parent="."]
-layout_mode = 0
-offset_right = 24.0
-offset_bottom = 24.0
-text = "Hero"
-
-[node name="Button" type="Button" parent="CheckBox"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "test"
-
-[connection signal="button_down" from="HBoxContainer/AddHero" to="." method="_on_add_hero_button_down"]
+[connection signal="button_down" from="HBoxContainer/ScrollContainer/HeroesContainer/AddHero" to="." method="_on_add_hero_button_down"]

@@ -12,12 +12,21 @@ signal health_depleted
 @export var active_component: ActiveComponent
 @export var level_component: LevelComponent
 
+## Простые ключи для сериализации
+var simple_keys = ['upgrades', 'unit_name', 'health', 'damage', 'upgrades_list']
+
 var health: int = 100
 var damage: int = 3
 @export var unit_name:String = 'Юнит'
 
 ## Переменная для хранения улучшения характеристик самого персонажа. Массив {index: upgrade_id}
 var upgrades = {}
+## Все доступные апгрейды для персонажа
+var upgrades_list = []
+
+var table_width = 15
+var table_height = 15
+var table_size = table_width * table_height
 
 func _ready():
 	%InfoPanel/Name.text = "%s. Ур. %s" % [unit_name, level_component.level]
@@ -48,7 +57,7 @@ func info_text():
 	
 ## Выведение текста в панель информации по умениям героя
 func info_skill_text():
-	var info = 'Умений: ' + str(SKILLS.size())
+	var info = 'Умений: %s\nРазвитий: %s' % [SKILLS.size(), upgrades.size()]
 	%InfoPanel/SkillInfo.text = info
 
 func _on_actions_attacked():
@@ -59,3 +68,20 @@ func _on_actions_attacked():
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed('click'):
 		$TargetComponent.toggle_target()
+
+func serialize():
+	var data = {}
+	for key in simple_keys:
+		data[key] = self[key]
+	return data
+
+func deserialize(data: Dictionary):
+	for key in simple_keys:
+		if data.has(key): 
+			self[key] = data[key]
+	return self
+	
+static func deserialize_scene(data: Dictionary):
+	var scene = preload("res://unit/player.tscn")
+	var unit: Player = scene.instantiate()
+	return unit.deserialize(data)

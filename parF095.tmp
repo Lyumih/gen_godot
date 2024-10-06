@@ -46,13 +46,15 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Player" parent="HBoxContainer/ScrollContainer/HeroesContainer" instance=ExtResource("2_c00vy")]
+[node name="Player" parent="HBoxContainer/ScrollContainer/HeroesContainer" node_paths=PackedStringArray("SKILLS") instance=ExtResource("2_c00vy")]
 visible = false
 layout_mode = 2
+SKILLS = [NodePath("../../../../HealSkill"), NodePath("../../../../PowerAttack")]
 
-[node name="Player2" parent="HBoxContainer/ScrollContainer/HeroesContainer" instance=ExtResource("2_c00vy")]
+[node name="Player2" parent="HBoxContainer/ScrollContainer/HeroesContainer" node_paths=PackedStringArray("SKILLS") instance=ExtResource("2_c00vy")]
 visible = false
 layout_mode = 2
+SKILLS = [NodePath("../../../../PowerAttack")]
 
 [node name="Player3" parent="HBoxContainer/ScrollContainer/HeroesContainer" instance=ExtResource("2_c00vy")]
 visible = false
