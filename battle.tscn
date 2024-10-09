@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_dk0uv"]
 [ext_resource type="PackedScene" uid="uid://5qbvpm0ullpb" path="res://unit/player.tscn" id="2_40q2x"]
-[ext_resource type="Resource" uid="uid://6uemgng5dpyv" path="res://combat/jobs/Rogue.tres" id="3_thwxi"]
+[ext_resource type="PackedScene" uid="uid://cwoclo55ykys4" path="res://component/saver/PartySaver.tscn" id="2_dvl66"]
 [ext_resource type="PackedScene" uid="uid://kscdultu6hj2" path="res://game_actions.tscn" id="7_ke1wm"]
 [ext_resource type="PackedScene" uid="uid://dyausp0rkbrd0" path="res://component/History/HistoryComponent.tscn" id="8_e02kc"]
 [ext_resource type="PackedScene" uid="uid://si7taig2uamb" path="res://unit/Actions.tscn" id="8_yh15h"]
@@ -25,6 +25,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dk0uv")
 
+[node name="PartySaver" parent="." instance=ExtResource("2_dvl66")]
+
 [node name="UnitsContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 48.0
@@ -40,19 +42,9 @@ layout_mode = 2
 horizontal_scroll_mode = 0
 
 [node name="PlayersContainer" type="VBoxContainer" parent="UnitsContainer/ScrollContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 36
-
-[node name="Player" parent="UnitsContainer/ScrollContainer2/PlayersContainer" node_paths=PackedStringArray("SKILLS") groups=["players"] instance=ExtResource("2_40q2x")]
-layout_mode = 2
-STATS = ExtResource("3_thwxi")
-SKILLS = [NodePath("../../../../HealSkill"), NodePath("../../../../PowerAttack")]
-unit_name = "Рога"
-
-[node name="Player2" parent="UnitsContainer/ScrollContainer2/PlayersContainer" node_paths=PackedStringArray("SKILLS") groups=["players"] instance=ExtResource("2_40q2x")]
-layout_mode = 2
-SKILLS = [NodePath("../../../../PowerAttack")]
-unit_name = "Файтер"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UnitsContainer"]
 layout_mode = 2

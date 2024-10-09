@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu1lxeibwyrwi"]
+
+[ext_resource type="Script" path="res://component/Serializer/serializer_component.gd" id="1_pnfw5"]
+
+[node name="SerializerComponent" type="Node2D" groups=["serializable"]]
+script = ExtResource("1_pnfw5")

@@ -47,6 +47,7 @@ theme_override_constants/separation = 32
 
 [node name="TabContainer" type="TabContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 296.0
 offset_top = 64.0
@@ -54,21 +55,10 @@ offset_right = 1144.0
 offset_bottom = 640.0
 current_tab = 2
 
-[node name="Stats" type="TabBar" parent="TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="RandomStats" type="Button" parent="TabContainer/Stats"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Случайные статы"
-
 [node name="Weapon" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 1
+metadata/_tab_index = 0
 
 [node name="Button" type="Button" parent="TabContainer/Weapon"]
 visible = false
@@ -78,8 +68,9 @@ offset_bottom = 8.0
 text = "Надеть меч"
 
 [node name="Skill" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
-metadata/_tab_index = 2
+metadata/_tab_index = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Skill"]
 layout_mode = 2
@@ -93,9 +84,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Mastery" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
-metadata/_tab_index = 3
+metadata/_tab_index = 2
 
 [node name="PlayerUpgradesLabel" type="Label" parent="TabContainer/Mastery"]
 unique_name_in_owner = true
@@ -126,7 +116,7 @@ columns = 20
 visible = false
 layout_mode = 2
 text = "Удалить"
-metadata/_tab_index = 4
+metadata/_tab_index = 3
 
 [node name="HealSkill" parent="." instance=ExtResource("5_hplxw")]
 
@@ -136,5 +126,4 @@ metadata/_tab_index = 4
 unique_name_in_owner = true
 
 [connection signal="button_down" from="HBoxContainer/AddHero" to="." method="_on_add_hero_button_down"]
-[connection signal="button_down" from="TabContainer/Stats/RandomStats" to="." method="_on_random_stats_button_down"]
 [connection signal="button_down" from="TabContainer/Remove" to="." method="_on_remove_button_down"]

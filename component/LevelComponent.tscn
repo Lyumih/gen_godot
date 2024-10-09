@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://hjf3cil0m70l"]
+[gd_scene load_steps=3 format=3 uid="uid://hjf3cil0m70l"]
 
 [ext_resource type="Script" path="res://component/LevelComponent.gd" id="1_h18gr"]
+[ext_resource type="PackedScene" uid="uid://bu1lxeibwyrwi" path="res://component/Serializer/SerializerComponent.tscn" id="2_eagf8"]
 
 [node name="LevelComponent" type="Node2D"]
 script = ExtResource("1_h18gr")
+
+[node name="SerializerComponent" parent="." instance=ExtResource("2_eagf8")]
+simple_keys = Array[String](["level"])

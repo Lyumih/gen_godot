@@ -17,7 +17,7 @@ shader = ExtResource("2_i1p3e")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[node name="Player" type="PanelContainer" node_paths=PackedStringArray("speed_component", "active_component") groups=["speed", "units"]]
+[node name="Player" type="PanelContainer" node_paths=PackedStringArray("speed_component", "active_component", "level_component") groups=["speed", "units"]]
 anchors_preset = -1
 anchor_right = 0.118
 anchor_bottom = 0.21
@@ -29,6 +29,7 @@ script = ExtResource("1_lplo4")
 STATS = ExtResource("2_sik56")
 speed_component = NodePath("SpeedComponent")
 active_component = NodePath("ActiveComponent")
+level_component = NodePath("LevelComponent")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -86,9 +87,8 @@ level = 24
 [node name="MasteryComponent" parent="." instance=ExtResource("10_kxwdj")]
 
 [node name="SerializerComponent" parent="." instance=ExtResource("11_jo5di")]
-simple_keys = Array[String](["unit_name", "health"])
-hard_serialize_keys = Array[String](["mastery_component", "level_component"])
+simple_keys = Array[String](["unit_name", "health", "damage"])
+hard_serialize_keys = Array[String](["mastery_component"])
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="level_upgraded" from="LevelComponent" to="." method="_on_level_component_level_upgraded"]
 [connection signal="mastery_upgraded" from="MasteryComponent" to="." method="_on_mastery_component_mastery_upgraded"]

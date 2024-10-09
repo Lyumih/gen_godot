@@ -1,11 +1,14 @@
 extends Node2D
 class_name LevelComponent
 
+signal level_upgraded
+
 ## Текущий уровень компонента, от чего будет маштабироваться родительский компонент
 @export var level = 1:
 	set(new_level):
 		level = new_level
 		chance_update()
+		level_upgraded.emit()
 ## Шанс (число), до которого должно выпасть, чтобы увеличился уровень
 @export var chance = 99
 ## Логирование компонента прокачки
@@ -56,3 +59,9 @@ func print_logger():
 ## Мультиплеер уровня
 func level_multiplier():
 	return 1 + level * 0.01
+
+func serialize():
+	return $SerializerComponent.serialize()
+	
+func desirialize(data):
+	return $SerializerComponent.deserialize(data)

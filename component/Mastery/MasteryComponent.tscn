@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm62al5h5mnvm"]
+
+[ext_resource type="Script" path="res://component/Mastery/mastery_component.gd" id="1_7s1a2"]
+[ext_resource type="PackedScene" uid="uid://bu1lxeibwyrwi" path="res://component/Serializer/SerializerComponent.tscn" id="2_6sbrd"]
+
+[node name="MasteryComponent" type="Node2D" groups=["mastery"]]
+script = ExtResource("1_7s1a2")
+
+[node name="SerializerComponent" parent="." instance=ExtResource("2_6sbrd")]
+simple_keys = Array[String](["upgrades_list", "upgrades", "all_upgrades"])

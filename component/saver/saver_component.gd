@@ -42,3 +42,7 @@ func update_save_version():
 	var total_save_count = Global.config.get_value('HACKER', 'total_save_count', 0)
 	Global.config.set_value(section, "save_count", save_count)
 	Global.config.set_value(section, "last_total_save_count", total_save_count + 1)
+	
+## Todo: Пробегает по родительским компонентам до тех пор, пока не найдёт, где можно себя сохранить
+func parent_save():
+	pass

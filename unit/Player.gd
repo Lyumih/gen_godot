@@ -5,38 +5,40 @@ class_name Player
 signal health_changed(old_value, new_value)
 signal health_depleted
 
-@export var STATS: StartingStats
-@export var SKILLS: Array[Skill]
+var health: int = 100:
+	set(value):
+		health = value
+		update_unit_info()
 
-@export var speed_component: SpeedComponent
-@export var active_component: ActiveComponent
-@export var level_component: LevelComponent
-
-## Простые ключи для сериализации
-var simple_keys = ['upgrades', 'unit_name', 'health', 'damage', 'upgrades_list']
-
-var health: int = 100
-var damage: int = 3
+## Имя юнита. Нужно переделать на компонент
 @export var unit_name:String = 'Юнит'
 
-## Переменная для хранения улучшения характеристик самого персонажа. Массив {index: upgrade_id}
-var upgrades = {}
-## Все доступные апгрейды для персонажа
-var upgrades_list = []
+## Начальные статы юнита
+@export var STATS: StartingStats
 
-var table_width = 15
-var table_height = 15
-var table_size = table_width * table_height
+## Умения юнита
+@export var SKILLS: Array[Skill]
 
+## Компоненты юнита
+@export var speed_component: SpeedComponent
+@export var active_component: ActiveComponent
+@onready var level_component: LevelComponent = $LevelComponent
+@onready var mastery_component: MasteryComponent = $MasteryComponent
+
+## Инициализация статов юнита и информации о нём
 func _ready():
-	%InfoPanel/Name.text = "%s. Ур. %s" % [unit_name, level_component.level]
 	speed_component.max_speed = STATS.speed
 	speed_component.speed = STATS.speed
 	%Sprite2D.texture = STATS.texture
-	%HelathBar.value = health
+	update_unit_info()
+	
+## Обновление информации о герое
+func update_unit_info():
+	%InfoPanel/Name.text = "%s. Ур. %s" % [unit_name, level_component.level]
 	%HelathBar.max_value = health
-	info_text()
-	info_skill_text()
+	%HelathBar.value = health
+	%InfoPanel/Info.text = "❤️%s\n⚕️%s 💪%s" % [health, STATS.heal, STATS.damage]
+	%InfoPanel/SkillInfo.text = 'Умений: %s\nРазвитий: %s' % [SKILLS.size(), mastery_component.upgrades.size()]
 	
 func set_active(active: bool):
 	active_component.set_active(active)
@@ -47,41 +49,27 @@ func take_damage(amount):
 	health_changed.emit(old_health, health)
 	if health <= 0:
 		health_depleted.emit()
-	info_text()
+	update_unit_info()
 		
-## Выведение текста в панель информации по герою
-func info_text():
-	%HelathBar.value = health
-	var info = "❤️%s\n⚕️%s 💪%s" % [health, STATS.heal, STATS.damage]
-	%InfoPanel/Info.text = info
-	
-## Выведение текста в панель информации по умениям героя
-func info_skill_text():
-	var info = 'Умений: %s\nРазвитий: %s' % [SKILLS.size(), upgrades.size()]
-	%InfoPanel/SkillInfo.text = info
-
 func _on_actions_attacked():
-	prints("DAMAGE", damage)
-	take_damage(damage)
+	prints("DAMAGE", STATS.damage)
+	take_damage(STATS.damage)
 
-
+## Смена цели по клику персонажа
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed('click'):
 		$TargetComponent.toggle_target()
-
+		
 func serialize():
-	var data = {}
-	for key in simple_keys:
-		data[key] = self[key]
-	return data
-
-func deserialize(data: Dictionary):
-	for key in simple_keys:
-		if data.has(key): 
-			self[key] = data[key]
-	return self
+	return $SerializerComponent.serialize()
 	
-static func deserialize_scene(data: Dictionary):
-	var scene = preload("res://unit/player.tscn")
-	var unit: Player = scene.instantiate()
-	return unit.deserialize(data)
+func deserialize(data):
+	return $SerializerComponent.deserialize(data)
+
+## Сигнал: мастерство было улучшено у персонажа
+func _on_mastery_component_mastery_upgraded() -> void:
+	update_unit_info()
+
+## Сигнал - когда повышается уровень
+func _on_level_component_level_upgraded() -> void:
+	update_unit_info()

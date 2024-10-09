@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://couc2avgwecok"]
+[gd_scene load_steps=7 format=3 uid="uid://couc2avgwecok"]
 
 [ext_resource type="PackedScene" uid="uid://1u74d5d8nucc" path="res://menu/menu.tscn" id="1_sbgxh"]
 [ext_resource type="Script" path="res://party.gd" id="1_snlwb"]
+[ext_resource type="PackedScene" uid="uid://5qbvpm0ullpb" path="res://unit/player.tscn" id="2_c00vy"]
 [ext_resource type="PackedScene" uid="uid://cwg88mn0pae6g" path="res://combat/skills/power_attack/PowerAttack.tscn" id="5_4e12d"]
 [ext_resource type="PackedScene" uid="uid://7hcroct5kfa1" path="res://combat/skills/heal/HealSkill.tscn" id="5_hplxw"]
-[ext_resource type="PackedScene" uid="uid://cwoclo55ykys4" path="res://component/saver/PartySaver.tscn" id="5_yy2uj"]
+[ext_resource type="PackedScene" uid="uid://camog3a1d6fhr" path="res://component/saver/SaverComponent.tscn" id="6_w8o0o"]
 
 [node name="Party" type="Control"]
 layout_mode = 3
@@ -45,6 +46,18 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 32
 
+[node name="Player" parent="HBoxContainer/ScrollContainer/HeroesContainer" instance=ExtResource("2_c00vy")]
+visible = false
+layout_mode = 2
+
+[node name="Player2" parent="HBoxContainer/ScrollContainer/HeroesContainer" instance=ExtResource("2_c00vy")]
+visible = false
+layout_mode = 2
+
+[node name="Player3" parent="HBoxContainer/ScrollContainer/HeroesContainer" instance=ExtResource("2_c00vy")]
+visible = false
+layout_mode = 2
+
 [node name="TabContainer" type="TabContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
@@ -54,50 +67,39 @@ offset_right = 1144.0
 offset_bottom = 640.0
 current_tab = 2
 
-[node name="Stats" type="TabBar" parent="TabContainer"]
+[node name="Оружие" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="RandomStats" type="Button" parent="TabContainer/Stats"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Случайные статы"
-
-[node name="Weapon" type="TabBar" parent="TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="Button" type="Button" parent="TabContainer/Weapon"]
+[node name="Button" type="Button" parent="TabContainer/Оружие"]
 visible = false
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Надеть меч"
 
-[node name="Skill" type="TabBar" parent="TabContainer"]
+[node name="Умения" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
-metadata/_tab_index = 2
+metadata/_tab_index = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Skill"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Умения"]
 layout_mode = 2
 offset_right = 648.0
 offset_bottom = 377.0
 
-[node name="SkillsContainer" type="VBoxContainer" parent="TabContainer/Skill/ScrollContainer"]
+[node name="SkillsContainer" type="VBoxContainer" parent="TabContainer/Умения/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Mastery" type="TabBar" parent="TabContainer"]
-visible = false
+[node name="Развитие" type="TabBar" parent="TabContainer"]
 layout_mode = 2
-metadata/_tab_index = 3
+metadata/_tab_index = 2
 
-[node name="PlayerUpgradesLabel" type="Label" parent="TabContainer/Mastery"]
+[node name="PlayerUpgradesLabel" type="Label" parent="TabContainer/Развитие"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 160.0
@@ -107,7 +109,7 @@ text = "Уровень: 5. Улучшений: 12
 сила +10"
 autowrap_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Mastery"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Развитие"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,7 +119,7 @@ offset_top = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TableUpgrades" type="GridContainer" parent="TabContainer/Mastery/ScrollContainer"]
+[node name="TableUpgrades" type="GridContainer" parent="TabContainer/Развитие/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 20
@@ -126,15 +128,19 @@ columns = 20
 visible = false
 layout_mode = 2
 text = "Удалить"
-metadata/_tab_index = 4
+metadata/_tab_index = 3
 
 [node name="HealSkill" parent="." instance=ExtResource("5_hplxw")]
 
 [node name="PowerAttack" parent="." instance=ExtResource("5_4e12d")]
 
-[node name="PartySaver" parent="." instance=ExtResource("5_yy2uj")]
+[node name="PartySaver" parent="." instance=ExtResource("6_w8o0o")]
 unique_name_in_owner = true
+section = "PARTY"
+data = {
+"units": []
+}
+NEED_PRINT = true
 
 [connection signal="button_down" from="HBoxContainer/AddHero" to="." method="_on_add_hero_button_down"]
-[connection signal="button_down" from="TabContainer/Stats/RandomStats" to="." method="_on_random_stats_button_down"]
 [connection signal="button_down" from="TabContainer/Remove" to="." method="_on_remove_button_down"]
