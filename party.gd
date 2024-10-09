@@ -8,6 +8,7 @@ var player: Player
 func _ready() -> void:
 	load_party()
 	EventBus.target_changed.connect(change_target)
+	fill_all_skills()
 	#change_target()
 	
 ## Загрузка отряда из сохранения
@@ -18,6 +19,32 @@ func load_party():
 		var new_unit: Player = scene.instantiate()
 		%HeroesContainer.add_child(new_unit)
 		new_unit.deserialize(data_unit)
+		
+## Добавить все умения в список умений
+func fill_all_skills():
+	var skills: Array[Skill] = [$HealSkill, $PowerAttack]
+	for skill in skills:
+		var skillCard = load("res://ui/card/skill/SkillCard.tscn").instantiate() as SkillCard
+		skillCard.update_skill(skill)
+		skillCard.skill_clicked.connect(add_skill_to_player)
+		%AllSkills.add_child(skillCard)
+		
+## Добавить умение персонажу
+func add_skill_to_player(skill: Skill):
+	if player:
+		player.skills_component.skills.push_back(skill)
+		print_debug("ADD SKILL", skill, player.skills_component.skills)
+		update_skill_list()
+		save_current_player()
+	
+## Обновляет список умений у текущего игрока
+func update_skill_list():
+	for child in %SkillsContainer.get_children(): child.queue_free()
+	if player and player.skills_component:
+		for skill in player.skills_component.skills:
+			var skillCard = preload("res://ui/card/skill/SkillCard.tscn").instantiate()
+			%SkillsContainer.add_child(skillCard)
+			skillCard.update_skill(skill)
 
 ## Добавление нового героя в группу
 func _on_add_hero_button_down() -> void:
@@ -45,15 +72,7 @@ func change_target():
 		%TabContainer.hide()
 		for child in %TableUpgrades.get_children():
 			child.queue_free()
-	
-## Обновляет список умений у текущего игрока
-func update_skill_list():
-	for child in %SkillsContainer.get_children(): child.queue_free()
-	if player and player.SKILLS:
-		for skill in player.SKILLS as Array[Skill]:
-			var skillCard = load("res://ui/card/skill/SkillCard.tscn").instantiate()
-			%SkillsContainer.add_child(skillCard)
-			skillCard.update_skill(skill)
+
 
 ## Создание таблицы улучшений персонажа
 func init_unit_upgrades():

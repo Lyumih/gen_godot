@@ -6,10 +6,13 @@ class_name Skill
 @export var level: LevelComponent
 @export var aspects: Array[PackedScene]
 
+@onready var serializer_component: SerializerComponent = SerializerComponent.new()
+
 var history_component: HistoryComponent = HistoryComponent.new()
 
 func _ready() -> void:
 	add_child(history_component)
+	#serializer_component.hard_serialize_keys = ['level']
 
 func test() -> bool:
 	print("It's just skill test in SkillStats.gd file")
@@ -72,3 +75,12 @@ func calc_values():
 	
 func disabled():
 	return true
+
+func serialize():
+	#return serializer_component.serialize()
+	return {
+		level: level.serialize()
+	}
+	
+func deserialize(data):
+	return serializer_component.deserialize(data)

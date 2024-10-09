@@ -20,3 +20,5 @@ text = "Описание умения"
 icon = ExtResource("3_64t87")
 
 [node name="HealSkill" parent="." instance=ExtResource("2_eqmiy")]
+
+[connection signal="button_down" from="Skill" to="." method="_on_skill_button_down"]

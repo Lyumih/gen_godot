@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://vw5524s8s3gs"]
+
+[ext_resource type="Script" path="res://component/skills/skills_component.gd" id="1_r6e7y"]
+[ext_resource type="PackedScene" uid="uid://bu1lxeibwyrwi" path="res://component/Serializer/SerializerComponent.tscn" id="2_4ewou"]
+
+[node name="SkillsComponent" type="Node2D"]
+script = ExtResource("1_r6e7y")
+
+[node name="SerializerComponent" parent="." instance=ExtResource("2_4ewou")]
+simple_keys = Array[String](["skills"])

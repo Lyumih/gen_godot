@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://5qbvpm0ullpb"]
+[gd_scene load_steps=14 format=3 uid="uid://5qbvpm0ullpb"]
 
 [ext_resource type="Script" path="res://unit/Player.gd" id="1_lplo4"]
 [ext_resource type="Shader" path="res://unit/outline.gdshader" id="2_i1p3e"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://hjf3cil0m70l" path="res://component/LevelComponent.tscn" id="9_2xnlt"]
 [ext_resource type="PackedScene" uid="uid://dm62al5h5mnvm" path="res://component/Mastery/MasteryComponent.tscn" id="10_kxwdj"]
 [ext_resource type="PackedScene" uid="uid://bu1lxeibwyrwi" path="res://component/Serializer/SerializerComponent.tscn" id="11_jo5di"]
+[ext_resource type="PackedScene" uid="uid://vw5524s8s3gs" path="res://component/skills/SkillsComponent.tscn" id="12_fhnp4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nn421"]
 shader = ExtResource("2_i1p3e")
@@ -87,7 +88,9 @@ level = 24
 
 [node name="SerializerComponent" parent="." instance=ExtResource("11_jo5di")]
 simple_keys = Array[String](["unit_name", "health"])
-hard_serialize_keys = Array[String](["mastery_component", "level_component"])
+hard_serialize_keys = Array[String](["mastery_component", "level_component", "skills_component"])
+
+[node name="SkillsComponent" parent="." instance=ExtResource("12_fhnp4")]
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="level_upgraded" from="LevelComponent" to="." method="_on_level_component_level_upgraded"]

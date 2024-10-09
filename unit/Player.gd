@@ -24,6 +24,7 @@ var health: int = 100:
 @export var active_component: ActiveComponent
 @onready var level_component: LevelComponent = $LevelComponent
 @onready var mastery_component: MasteryComponent = $MasteryComponent
+@onready var skills_component: SkillsComponent = $SkillsComponent
 
 ## Инициализация статов юнита и информации о нём
 func _ready():
@@ -38,7 +39,7 @@ func update_unit_info():
 	%HelathBar.max_value = health
 	%HelathBar.value = health
 	%InfoPanel/Info.text = "❤️%s\n⚕️%s 💪%s" % [health, STATS.heal, STATS.damage]
-	%InfoPanel/SkillInfo.text = 'Умений: %s\nРазвитий: %s' % [SKILLS.size(), mastery_component.upgrades.size()]
+	%InfoPanel/SkillInfo.text = 'Умений: %s\nРазвитий: %s' % [skills_component.skills.size(), mastery_component.upgrades.size()]
 	
 func set_active(active: bool):
 	active_component.set_active(active)
@@ -60,11 +61,8 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed('click'):
 		$TargetComponent.toggle_target()
 		
-func serialize():
-	return $SerializerComponent.serialize()
-	
-func deserialize(data):
-	return $SerializerComponent.deserialize(data)
+func serialize(): return $SerializerComponent.serialize()
+func deserialize(data): return $SerializerComponent.deserialize(data)
 
 ## Сигнал: мастерство было улучшено у персонажа
 func _on_mastery_component_mastery_upgraded() -> void:

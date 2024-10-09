@@ -18,8 +18,9 @@ func serialize():
 	for key in simple_keys:
 		data[key] = owner[key]
 	for key in hard_serialize_keys:
-		#data[key] = owner[key].serialize()
 		data[key] = owner[key].serialize()
+		#if owner[key].has('serialize'):
+			#data[key] = owner[key].serialize()
 	print_debug("DATA SERI", data)
 	return data
 
