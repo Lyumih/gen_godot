@@ -61,8 +61,11 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed('click'):
 		$TargetComponent.toggle_target()
 		
-func serialize(): return $SerializerComponent.serialize()
-func deserialize(data): return $SerializerComponent.deserialize(data)
+func serialize(): 
+	return $SerializerComponent.serialize()
+
+func deserialize(data): 
+	return $SerializerComponent.deserialize(data)
 
 ## Сигнал: мастерство было улучшено у персонажа
 func _on_mastery_component_mastery_upgraded() -> void:

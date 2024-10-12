@@ -101,6 +101,7 @@ func upgrade_player_cell_click(index):
 	save_current_player()
 	upgrade_cells()
 	
+## Сохранение текущего персонажа
 func save_current_player():
 	for unit_index in party_saver.data.units.size():
 		if party_saver.data.units[unit_index].unit_name == player.unit_name:

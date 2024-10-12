@@ -7,4 +7,4 @@
 script = ExtResource("1_r6e7y")
 
 [node name="SerializerComponent" parent="." instance=ExtResource("2_4ewou")]
-simple_keys = Array[String](["skills"])
+array_serialize_keys = Array[String](["skills"])
